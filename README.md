@@ -28,7 +28,7 @@
 ### SDK 다운로드
 
 아래 싸이트를 방문하여 최신 버전의 SDK 파일(.framework)을 선택하여 다운로드 합니다.  
-[다운로드 페이지](release)
+[다운로드 페이지](https://github.com/tand-git/ios-sdk/releases)
 
 ### Xcode 프로젝트 설정
 
