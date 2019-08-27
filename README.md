@@ -5,11 +5,11 @@
   * [SDK 다운로드](#sdk-다운로드)
   * [Xcode 프로젝트 설정](#xcode-프로젝트-설정)
   * [SDK 초기화하기](#sdk-초기화하기)
+  * [딥링크 분석](#딥링크-분석)
 * [추가 기능](#추가-기능)
   * [사용자 이벤트 사용하기](#사용자-이벤트-사용하기)
   * [화면 자동 추적](#화면-자동-추적)
   * [사용자 세션 관리](#사용자-세션-관리)
-  * [딥링크 분석](#딥링크-분석)
 * [추가 설정](#추가-설정)
   * [로그 출력](#로그-출력)
   * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
@@ -74,6 +74,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SphereApp.configure(appKey: "Your Sphere Analytics App Key");
 
         return true
+    }
+}
+```
+
+### 딥링크 분석
+
+앱에서 Custom URL Scheme 또는 Universal Link를 사용하여 앱을 실행하는 경우 다음 코드와 같이 앱이 실행된 URL 정보를 Sphere Analytics로 전달합니다.  
+
+#### 1. URL Scheme을 사용한 앱 실행 시
+
+<AppDelegate.m>
+
+```objectivec
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+
+    [SPRAnalytics handleOpenUrl:url];
+
+    return YES;
+}
+
+@end
+```
+
+<AppDelegate.swift>
+
+```swift
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+
+        SphereAnalytics.handleOpen(url)
+
+        return true
+    }
+}
+```
+
+#### 2. Universal Link를 사용한 앱 실행 시
+
+<AppDelegate.m>
+
+```objectivec
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler {
+
+    [SPRAnalytics handleContinueUserActivity:userActivity];
+
+    return YES;
+}
+
+@end
+```
+
+<AppDelegate.swift>
+
+```swift
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+
+        SphereAnalytics.handleContinue(userActivity)
+
+        return true;
     }
 }
 ```
@@ -162,74 +230,6 @@ SphereAnalytics.setPageTrackingEnabled(false) // 비활성화
 
 ```swift
 SphereAnalytics.setSessionTimeoutInterval(60) // 1분
-```
-
-### 딥링크 분석
-
-앱에서 Custom URL Scheme 또는 Universal Link를 사용하여 앱을 실행하는 경우 다음 코드와 같이 앱이 실행된 URL 정보를 Sphere Analytics로 전달합니다.  
-
-#### 1. URL Scheme을 사용한 앱 실행 시
-
-<AppDelegate.m>
-
-```objectivec
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-
-    [SPRAnalytics handleOpenUrl:url];
-
-    return YES;
-}
-
-@end
-```
-
-<AppDelegate.swift>
-
-```swift
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-
-        SphereAnalytics.handleOpen(url)
-
-        return true
-    }
-}
-```
-
-#### 2. Universal Link를 사용한 앱 실행 시
-
-<AppDelegate.m>
-
-```objectivec
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler {
-
-    [SPRAnalytics handleContinueUserActivity:userActivity];
-
-    return YES;
-}
-
-@end
-```
-
-<AppDelegate.swift>
-
-```swift
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-
-        SphereAnalytics.handleContinue(userActivity)
-
-        return true;
-    }
-}
 ```
 
 ## 추가 설정
