@@ -15,6 +15,7 @@ NS_SWIFT_NAME(SphereApp)
 
 + (void)configureWithAppKey:(NSString *)appKey NS_SWIFT_NAME(configure(appKey:));
 + (void)setUserLevel:(NSString *)user;
++ (void)setUserLevel:(NSString *)user param:(nullable NSString *)param;
 
 @end
 

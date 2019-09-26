@@ -10,14 +10,15 @@
   * [사용자 이벤트 사용하기](#사용자-이벤트-사용하기)
   * [사용자 아이디 설정](#사용자-아이디-설정)
   * [사용자 속성 설정](#사용자-속성-설정)
-  * [화면 자동 추적](#화면-자동-추적)
   * [사용자 세션 관리](#사용자-세션-관리)
 * [추가 설정](#추가-설정)
   * [로그 출력](#로그-출력)
   * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
-  * [웹뷰 설정](#웹뷰-설정)
+* [웹뷰 설정](#웹뷰-설정)
 
 ## 기본 연동
+
+> 보다 정확한 이벤트 분석 및 트래킹을 위해서는 기본 연동에 포함된 가이드 중 해당되는 모든 항목들의 연동이 필요합니다.
 
 ### Sphere Analytics 시작하기
 
@@ -82,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ### 딥링크 분석
 
-앱에서 Custom URL Scheme 또는 Universal Link를 사용하여 앱을 실행하는 경우 다음 코드와 같이 앱이 실행된 URL 정보를 Sphere Analytics로 전달합니다.  
+앱에서 Custom URL Scheme 또는 Universal Link를 사용하여 앱을 실행하는 경우 다음 코드와 같이 앱이 실행된 URL 정보를 Sphere Analytics로 전달합니다.
 
 #### 1. URL Scheme을 사용한 앱 실행 시
 
@@ -242,27 +243,6 @@ SphereAnalytics.setUserProperty(nil, forName: "user_property_name")
 SphereAnalytics.resetUserProperties()
 ```
 
-### 화면 자동 추적
-
-앱이 실행되고 이후 전환되는 화면(UIViewController)을 자동으로 추적하여 이벤트를 기록합니다.
-
-* 이벤트명 : "#page"
-* 파라미터 : {"pageClass":"UIViewController 상속 클래스명"}
-
-아래 코드를 통해 자동 화면 추적 기능을 비활성화 할 수 있습니다. (기본 설정: 활성화)
-
-<.m>
-
-```objectivec
-[SPRAnalytics setPageTrackingEnabled:false]; // 비활성화
-```
-
-<.swift>
-
-```swift
-SphereAnalytics.setPageTrackingEnabled(false) // 비활성화
-```
-
 ### 사용자 세션 관리
 
 사용자 세션 정보를 위한 신규 세션 생성 규칙은 다음과 같으며, 신규 세션 시작 시 "#session" 이벤트가 기록됩니다.
@@ -320,12 +300,12 @@ Sphere Analytics의 이벤트 수집 기능을 비활성화하기를 원할 경�
 SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
 ```
 
-### 웹뷰 설정
+## 웹뷰 설정
 
 웹뷰를 이용한 하이브리드앱을 개발하는 경우 사용자 이벤트를 수집하기 위해서는 자바스크립트 인터페이스 핸들러를 통해 네이티브 API를 호출해야 합니다.  
 [샘플 프로젝트](sample)를 참조하면 웹뷰를 통해 연동된 샘플 소스를 확인할 수 있습니다.
 
-#### 1. 웹뷰 스크립트 메세지 핸들러 등록
+### 1. 웹뷰 스크립트 메세지 핸들러 등록
 
 웹뷰에 스크립트 메세지 핸들러를 등록하여 웹에서 호출하는 자바스크립트 이벤트를 네이티브 인터페이스로 맵핑합니다.
 
@@ -390,7 +370,7 @@ class ViewController: UIViewController, WKScriptMessageHandler {
 }
 ```
 
-#### 2. 자바스크립트 인터페이스
+### 2. 자바스크립트 인터페이스
 
 아래 코드와 같이 자바스크립트를 위한 인터페이스를 추가하고 해당 화면 또는 이벤트 발생 시점에 자바스크립트 인터페이스 함수를 호출합니다.
 이벤트 및 파라미터에 관한 규격은 [사용자 이벤트 사용하기](#사용자-이벤트-사용하기)에 명시되어 있습니다.

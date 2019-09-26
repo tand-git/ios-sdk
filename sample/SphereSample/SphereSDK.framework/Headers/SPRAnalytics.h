@@ -19,14 +19,11 @@ NS_SWIFT_NAME(SphereAnalytics)
 + (void)logEventWithName:(NSString *)name
             paramBuilder:(nullable SPRParamBuilder *)builder NS_SWIFT_NAME(logEvent(_:paramBuilder:));
 
-+ (void)logPageEvent:(NSString *)pageClass;
-
 + (void)setUserId:(nullable NSString *)userId;
 + (void)setUserProperty:(nullable NSString *)value forName:(NSString *)name;
 + (void)resetUserProperties;
 
 + (void)setSessionTimeoutInterval:(NSTimeInterval)timeout;
-+ (void)setPageTrackingEnabled:(BOOL)enabled;
 
 + (void)setAnalyticsCollectionEnabled:(BOOL)enabled;
 + (void)enableLog:(BOOL)enable;

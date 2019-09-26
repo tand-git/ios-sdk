@@ -11,9 +11,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-//    [SPRAnalytics setPageTrackingEnabled:false]; // 비활성화
 //    [SPRAnalytics setSessionTimeoutInterval:60]; // 1분
-//    [SPRAnalytics setAnalyticsCollectionEnabled:false]; // 비활성화
     [SPRAnalytics enableLog:true]; // 활성화
 
     [SPRApp configureWithAppKey:@"Your Sphere SDK App Key"];
