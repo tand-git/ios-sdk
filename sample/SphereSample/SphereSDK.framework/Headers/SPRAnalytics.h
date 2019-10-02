@@ -18,6 +18,7 @@ NS_SWIFT_NAME(SphereAnalytics)
 
 + (void)logEventWithName:(NSString *)name
             paramBuilder:(nullable SPRParamBuilder *)builder NS_SWIFT_NAME(logEvent(_:paramBuilder:));
++ (void)logPageViewEventWithPageName:(NSString *)pageName;
 
 + (void)setUserId:(nullable NSString *)userId;
 + (void)setUserProperty:(nullable NSString *)value forName:(NSString *)name;
