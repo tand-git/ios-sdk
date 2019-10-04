@@ -24,6 +24,8 @@ NS_SWIFT_NAME(SphereAnalytics)
 + (void)setUserProperty:(nullable NSString *)value forName:(NSString *)name;
 + (void)resetUserProperties;
 
++ (void)requestUpload;
+
 + (void)setSessionTimeoutInterval:(NSTimeInterval)timeout;
 
 + (void)setAnalyticsCollectionEnabled:(BOOL)enabled;

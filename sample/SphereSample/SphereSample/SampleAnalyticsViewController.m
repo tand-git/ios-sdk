@@ -12,13 +12,24 @@
     [super viewDidLoad];
 }
 
-- (IBAction)sendEventClicked:(id)sender {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    // 화면 이벤트 기록
+    [SPRAnalytics logPageViewEventWithPageName:@"purchase_view"];
+}
+
+- (IBAction)logEventClicked:(id)sender {
+    // 이벤트 파라미터 설정
     SPRParamBuilder *paramBuilder = [SPRParamBuilder builder];
     [paramBuilder setParamWithString:@"notebook" forName:@"item"];
     [paramBuilder setParamWithLong:1 forName:@"quantity"];
     [paramBuilder setParamWithDouble:9.9 forName:@"price"];
-    
+    // 이벤트 기록
     [SPRAnalytics logEventWithName:@"purchase" paramBuilder:paramBuilder];
+
+    // 파라미터가 없는 이벤트 기록
+    [SPRAnalytics logEventWithName:@"purchase_clicked" paramBuilder:nil];
 }
 
 - (IBAction)userIdClicked:(id)sender {

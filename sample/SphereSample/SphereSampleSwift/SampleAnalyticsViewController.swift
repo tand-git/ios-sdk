@@ -7,13 +7,24 @@ class SampleAnalyticsViewController: UITableViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func sendEventClicked(_ sender: Any) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // 화면 이벤트 기록
+        SphereAnalytics.logPageViewEvent(withPageName: "purchase_view")
+    }
+
+    @IBAction func logEventClicked(_ sender: Any) {
+        // 이벤트 파라미터 설정
         let paramBuilder = SPRParamBuilder()
             .setStringParam("notebook", forName: "item")
             .setLongParam(1, forName: "quantity")
             .setDoubleParam(9.9, forName: "price")
-        
+        // 이벤트 기록
         SphereAnalytics.logEvent("purchase", paramBuilder: paramBuilder)
+
+        // 파라미터가 없는 이벤트 기록
+        SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
     }
 
     @IBAction func userIdClicked(_ sender: Any) {

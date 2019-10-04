@@ -21,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options {
 
+    // 딥링크 설정
     [SPRAnalytics handleOpenUrl:url];
 
     return YES;
@@ -29,6 +30,7 @@
 #if !defined(__IPHONE_12_0) || __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_12_0
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray*restorableObjects))restorationHandler {
 
+    // 딥링크 설정
     [SPRAnalytics handleContinueUserActivity:userActivity];
 
     return YES;
@@ -36,6 +38,7 @@
 #else
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler {
 
+    // 딥링크 설정
     [SPRAnalytics handleContinueUserActivity:userActivity];
 
     return YES;
