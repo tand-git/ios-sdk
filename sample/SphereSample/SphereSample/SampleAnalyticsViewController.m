@@ -16,7 +16,7 @@
     [super viewDidAppear:animated];
 
     // 화면 이벤트 기록
-    [SPRAnalytics logPageViewEventWithPageName:@"purchase_view"];
+    [SPRAnalytics logEventWithName:@"product_view" paramBuilder:nil];
 }
 
 - (IBAction)logEventClicked:(id)sender {

@@ -11,7 +11,7 @@ class SampleAnalyticsViewController: UITableViewController {
         super.viewDidAppear(animated)
 
         // 화면 이벤트 기록
-        SphereAnalytics.logPageViewEvent(withPageName: "purchase_view")
+        SphereAnalytics.logEvent("product_view", paramBuilder: nil)
     }
 
     @IBAction func logEventClicked(_ sender: Any) {
