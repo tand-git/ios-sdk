@@ -18,6 +18,7 @@
 * [웹뷰 설정](#웹뷰-설정)
   * [웹뷰 자바스크립트 메세지 핸들러 등록](#웹뷰-자바스크립트-메세지-핸들러-등록)
   * [자바스크립트 인터페이스](#자바스크립트-인터페이스)
+  * [자바스크립트 이벤트 기록하기](#자바스크립트-이벤트-기록하기)
 
 ## 기본 연동
 
@@ -50,7 +51,7 @@ Sphere Analytics를 사용하기 위해서는 앱키(App key)가 필요합니다
 (앱키가 없는 경우 Sphere Analytics 콘솔에서 앱을 등록하고 앱키를 발급 받습니다.)  
 Sphere SDK 라이브러리를 프로젝트에 추가한 후 앱키와 함께 다음 코드와 같이 Sphere SDK를 초기화합니다.  
 
-<AppDelegate.m>
+`<AppDelegate.m>`
 
 ```objectivec
 @import SphereSDK;
@@ -67,7 +68,7 @@ Sphere SDK 라이브러리를 프로젝트에 추가한 후 앱키와 함께 다
 @end
 ```
 
-<AppDelegate.swift>
+`<AppDelegate.swift>`
 
 ```swift
 import SphereSDK
@@ -90,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 #### 1. URL Scheme을 사용한 앱 실행 시
 
-<AppDelegate.m>
+`<AppDelegate.m>`
 
 ```objectivec
 @implementation AppDelegate
@@ -105,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 @end
 ```
 
-<AppDelegate.swift>
+`<AppDelegate.swift>`
 
 ```swift
 @UIApplicationMain
@@ -122,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 #### 2. Universal Link를 사용한 앱 실행 시
 
-<AppDelegate.m>
+`<AppDelegate.m>`
 
 ```objectivec
 @implementation AppDelegate
@@ -137,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 @end
 ```
 
-<AppDelegate.swift>
+`<AppDelegate.swift>`
 
 ```swift
 @UIApplicationMain
@@ -156,10 +157,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ### 커스텀 이벤트 사용하기
 
-SDK가 초기화 되었다면 logEvent 함수를 이용하여 커스텀 이벤트를 설정할 수 있으며, 한 이벤트는 최대 25개의 파라미터를 설정할 수 있습니다.
-파라미터는 파라미터명과 파라미터값의 쌍으로 구성되며 SPRParamBuilder 클래스를 통해 설정이 가능합니다.
+SDK가 초기화 되었다면 `logEvent` 함수를 이용하여 커스텀 이벤트를 설정할 수 있으며, 한 이벤트는 최대 25개의 파라미터를 설정할 수 있습니다.
+파라미터는 파라미터명과 파라미터값의 쌍으로 구성되며 `SPRParamBuilder` 클래스를 통해 설정이 가능합니다.
 
-이벤트명은 필수이며 파라미터는 없는 경우 null로 설정 가능합니다. 이벤트명과 파라미터에 관한 규칙은 다음과 같습니다.
+이벤트명은 필수이며 파라미터는 없는 경우 `nil`로 설정 가능합니다. 이벤트명과 파라미터에 관한 규칙은 다음과 같습니다.
 
 1. 이벤트명
     * 최대 40자  
@@ -174,7 +175,7 @@ SDK가 초기화 되었다면 logEvent 함수를 이용하여 커스텀 이벤�
 3. 파라미터값
     * 지원 타입 : NSString(최대 100자), int, long, float, double, BOOL
 
-<.m>
+`<.m>`
 
 ```objectivec
 // 이벤트 파라미터 설정
@@ -189,7 +190,7 @@ SPRParamBuilder *paramBuilder = [SPRParamBuilder builder];
 [SPRAnalytics logEventWithName:@"purchase_clicked" paramBuilder:nil];
 ```
 
-<.swift>
+`<.swift>`
 
 ```swift
 // 이벤트 파라미터 설정
@@ -207,9 +208,9 @@ SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
 ### 사용자 아이디 설정
 
 고유한 사용자를 구분하기 위해 사용자 아이디를 설정합니다.  
-사용자 아이디는 최대 100자까지 설정가능하고 빈 문자열은 올 수 없으며, nil로 설정 시 사용자 아이디 정보는 초기화됩니다.
+사용자 아이디는 최대 100자까지 설정가능하고 빈 문자열은 올 수 없으며, `nil`로 설정 시 사용자 아이디 정보는 초기화됩니다.
 
-<.m>
+`<.m>`
 
 ```objectivec
 // 사용자 아이디 설정
@@ -218,7 +219,7 @@ SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
 [SPRAnalytics setUserId:nil];
 ```
 
-<.swift>
+`<.swift>`
 
 ```swift
 // 사용자 아이디 설정
@@ -232,7 +233,7 @@ SphereAnalytics.setUserId(nil)
 사용자 속성 정보를 설정 및 설정한 사용자 속성 정보를 초기화합니다.  
 속성명과 속성값의 쌍으로 구성되며, 속성명은 최대 24자, 속성값은 최대 36자까지 설정 가능합니다.
 
-<.m>
+`<.m>`
 
 ```objectivec
 // 사용자 속성 설정
@@ -243,7 +244,7 @@ SphereAnalytics.setUserId(nil)
 [SPRAnalytics resetUserProperties];
 ```
 
-<.swift>
+`<.swift>`
 
 ```swift
 // 사용자 속성 설정
@@ -263,13 +264,13 @@ SphereAnalytics.resetUserProperties()
 
 아래 코드를 통해 사용자 세션 타임아웃 시간을 변경할 수 있습니다. (기본 설정: 30분)  
 
-<.m>
+`<.m>`
 
 ```objectivec
 [SPRAnalytics setSessionTimeoutInterval:60]; // 1분
 ```
 
-<.swift>
+`<.swift>`
 
 ```swift
 SphereAnalytics.setSessionTimeoutInterval(60) // 1분
@@ -280,13 +281,13 @@ SphereAnalytics.setSessionTimeoutInterval(60) // 1분
 기본적으로 Sphere Analytics는 앱이 실행 후 비활성화되는 시점에 기록된 모든 이벤트들을 서버에 전송합니다.  
 하지만 requestUpload 함수를 호출할 경우 현재까지 기록된 모든 이벤트들을 호출 즉시 서버로 전송합니다.
 
-<.m>
+`<.m>`
 
 ```objectivec
 [SPRAnalytics requestUpload];
 ```
 
-<.swift>
+`<.swift>`
 
 ```swift
 SphereAnalytics.requestUpload()
@@ -299,13 +300,13 @@ SphereAnalytics.requestUpload()
 Sphere Analytics 연동이 완료된 후 로그 출력 함수를 활성화 하면 세션의 시작과 종료 및 이벤트 정보의 로그를 확인할 수 있습니다.
 기본 설정은 비활성화 상태입니다.
 
-<.m>
+`<.m>`
 
 ```objectivec
 [SPRAnalytics enableLog:true]; // 활성화
 ```
 
-<.swift>
+`<.swift>`
 
 ```swift
 SphereAnalytics.enableLog(true) // 활성화
@@ -316,13 +317,13 @@ SphereAnalytics.enableLog(true) // 활성화
 Sphere Analytics의 이벤트 수집 기능을 비활성화하기를 원할 경우 아래와 같은 코드를 추가합니다.
 기본 설정은 활성화 상태이며, 비활성화된 이후로는 다시 활성화하기 전까지 Sphere Analytics 관련 기능이 동작하지 않습니다.
 
-<.m>
+`<.m>`
 
 ```objectivec
 [SPRAnalytics setAnalyticsCollectionEnabled:false]; // 비활성화
 ```
 
-<.swift>
+`<.swift>`
 
 ```swift
 SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
@@ -331,13 +332,14 @@ SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
 ## 웹뷰 설정
 
 웹뷰를 이용한 하이브리드앱을 개발하는 경우 이벤트를 수집하기 위해서는 자바스크립트 인터페이스 핸들러를 통해 네이티브 API를 호출해야 합니다.  
-[샘플 프로젝트](sample)를 참조하면 웹뷰를 통해 연동된 샘플 소스를 확인할 수 있습니다.
+[샘플 프로젝트](sample)를 참조하면 웹뷰를 통해 연동된 전체 샘플 소스를 확인할 수 있습니다.
 
 ### 웹뷰 자바스크립트 메세지 핸들러 등록
 
-웹뷰에 스크립트 메세지 핸들러를 등록하여 웹에서 호출하는 Sphere 자바스크립트 인터페이스를 Sphere 네이티브 인터페이스로 연결합니다.
+웹뷰에 스크립트 메세지 핸들러를 등록하여 웹에서 호출하는 Sphere 자바스크립트 인터페이스를 Sphere 네이티브 인터페이스로 연결합니다.  
+관련 샘플 소스는 [sample/SphereSample/SphereSample/SampleWebViewController.m](sample/SphereSample/SphereSample/SampleWebViewController.m)에서 확인할 수 있습니다.
 
-<ViewController.m>
+`<ViewController.m>`
 
 ```objectivec
 @interface ViewController () <WKScriptMessageHandler>
@@ -371,7 +373,7 @@ SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
 @end
 ```
 
-<ViewController.swift>
+`<ViewController.swift>`
 
 ```swift
 class ViewController: UIViewController, WKScriptMessageHandler {
@@ -400,60 +402,41 @@ class ViewController: UIViewController, WKScriptMessageHandler {
 
 ### 자바스크립트 인터페이스
 
-웹페이지 헤더에 Sphere 자바스크립트 인터페이스([sphereAnalytics.js](sample/SphereSample/web/sphereAnalytics.js))를 추가하고 해당 화면 또는 이벤트 발생 시점에 자바스크립트 인터페이스 함수를 호출합니다.  
-이벤트 및 파라미터에 관한 규격은 [커스텀 이벤트 사용하기](#커스텀-이벤트-사용하기)에 명시되어 있습니다.
+웹페이지의 `<head>` 또는 `<body>`에 Sphere 자바스크립트 인터페이스 파일([sphereAnalytics.js](sample/SphereSample/web/sphereAnalytics.js))을 추가하고 해당 화면 또는 이벤트 발생 시점에 자바스크립트 인터페이스 함수를 호출합니다.
 
-<sphereAnalytics.js> Sphere 자바스크립트 인터페이스
+`<sphereAnalytics.js>` Sphere 자바스크립트 인터페이스
 > 샘플 프로젝트 내 [sample/SphereSample/web/sphereAnalytics.js](sample/SphereSample/web/sphereAnalytics.js) 파일 참조
 
-<index.html> 웹페이지 사용 예제
+`<index.html>` 웹페이지 사용 예제
 > 샘플 프로젝트 내 [sample/SphereSample/web/index.html](sample/SphereSample/web/index.html) 파일 참조
 
 ```html
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <body>
+    <button onclick="event_click()">Log Event</button>
 
     <script type="text/javascript" src="sphereAnalytics.js"></script>
     <script type="text/javascript">
-
       // 화면 이벤트 기록
       SphereAnalytics.logEvent("product_view", null);
 
       function event_click() {
-          // 이벤트 및 파라미터 기록
+          // 이벤트 및 파라미터 기록. 파라미터 형식: JSON 타입 { name : value, ... }
           var params = { item: "notebook", price: 9.9, quantity: 1 };
           SphereAnalytics.logEvent("purchase", params);
 
           // 파라미터가 없는 이벤트 기록
           SphereAnalytics.logEvent("purchase_clicked", null);
       }
-      function user_id_click() {
-          // 사용자 아이디 설정
-          SphereAnalytics.setUserId("User ID");
-          // 사용자 아이디 초기화
-          SphereAnalytics.setUserId(null);
-      }
-      function user_property_click() {
-          // 사용자 속성 설정
-          SphereAnalytics.setUserProperty("user_property_name", "user_property_value");
-          // 사용자 속성 초기화
-          SphereAnalytics.setUserProperty("user_property_name", null);
-          // 사용자 속성 전체 초기화
-          SphereAnalytics.resetUserProperties();
-      }
     </script>
-  </head>
-
-  <body>
-    <h4>Sphere Analytics WebView</h4>
-
-    <button style="font-size:20px" onclick="event_click()">Log Event</button>
-    <br/><br/>
-    <button style="font-size:20px" onclick="user_id_click()">Set User ID</button>
-    <br/><br/>
-    <button style="font-size:20px" onclick="user_property_click()">Set User Property</button>
-
   </body>
 </html>
 ```
+
+### 자바스크립트 이벤트 기록하기
+
+이벤트를 기록하기 위해서는 이벤트명과 파라미터와 함께 `SphereAnalytics.logEvent` 함수를 호출합니다.  
+파라미터는 JSON 타입으로 파라미터명과 파라미터값의 쌍으로 구성되며 파라미터가 없는 경우 `null`로 설정 가능합니다.  
+이벤트 및 파라미터에 관한 자세한 규칙은 [커스텀 이벤트 사용하기](#커스텀-이벤트-사용하기)에 명시되어 있습니다.
+
+* 파라미터값 지원 타입 : String(최대 100자), Number, Boolean
