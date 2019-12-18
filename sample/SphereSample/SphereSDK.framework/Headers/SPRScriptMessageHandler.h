@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SPRScriptMessageHandler : NSObject
+@interface SPRScriptMessageHandler : NSObject <WKScriptMessageHandler>
 
 + (void)handleReceiveScriptMessage:(WKScriptMessage *)message;
 

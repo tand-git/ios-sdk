@@ -3,7 +3,7 @@
 
 #import "SampleWebViewController.h"
 
-@interface SampleWebViewController () <WKScriptMessageHandler>
+@interface SampleWebViewController ()
 @property (nonatomic, readonly) WKWebView *webView;
 @end
 
@@ -12,11 +12,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Initialize the webview and add self as a script message handler.
+    // Initialize the webview
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *controller = [[WKUserContentController alloc] init];
 
-    [controller addScriptMessageHandler:self name:@"sphere"];
+    // Add a script message handler for Sphere Analytics
+    [controller addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
+
     configuration.userContentController = controller;
     _webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:configuration];
     [self.view addSubview:self.webView];
@@ -29,9 +31,4 @@
     [self.webView loadRequest:request];
 }
 
-- (void)userContentController:(WKUserContentController *)userContentController
-      didReceiveScriptMessage:(WKScriptMessage *)message {
-
-    [SPRScriptMessageHandler handleReceiveScriptMessage:message];
-}
 @end

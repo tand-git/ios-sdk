@@ -26,13 +26,12 @@
 
 ### Sphere Analytics 시작하기
 
-정상적인 Sphere Analytics 사용을 위해서는 아래 싸이트를 방문하여 회원 가입 후 앱을 등록하여 앱키(App key)를 발급받습니다.  
-[준비중]  
+정상적인 Sphere Analytics 사용을 위해서는 앱키(App key)가 필요하며, [Sphere Analytics 콘솔](https://analytics.tand.kr)을 방문하여 회원 가입 또는 로그인 후 앱을 등록하여 앱키를 발급받습니다.  
 [샘플 프로젝트](sample)를 참조하면 최신 버전의 Sphere SDK가 연동된 샘플 소스를 확인할 수 있습니다.
 
 ### SDK 다운로드
 
-아래 싸이트를 방문하여 최신 버전의 SDK 파일(.framework)을 선택하여 다운로드 합니다.  
+아래 다운로드 싸이트를 방문하여 최신 버전의 SDK 파일(.framework)을 선택하여 다운로드 합니다.  
 [다운로드 페이지](https://github.com/tand-git/ios-sdk/releases)
 
 ### Xcode 프로젝트 설정
@@ -47,8 +46,7 @@
 
 ### SDK 초기화하기
 
-Sphere Analytics를 사용하기 위해서는 앱키(App key)가 필요합니다.  
-(앱키가 없는 경우 Sphere Analytics 콘솔에서 앱을 등록하고 앱키를 발급 받습니다.)  
+Sphere Analytics를 사용하기 위해서는 앱키(App key)가 필요합니다. (앱키가 없는 경우 Sphere Analytics 콘솔에서 앱을 등록하고 앱키를 발급 받습니다.)  
 Sphere SDK 라이브러리를 프로젝트에 추가한 후 앱키와 함께 다음 코드와 같이 Sphere SDK를 초기화합니다.  
 
 `<AppDelegate.m>`
@@ -342,7 +340,7 @@ SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
 `<ViewController.m>`
 
 ```objectivec
-@interface ViewController () <WKScriptMessageHandler>
+@interface ViewController ()
 @property (nonatomic, readonly) WKWebView *webView;
 @end
 
@@ -355,7 +353,9 @@ SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *controller = [[WKUserContentController alloc] init];
 
-    [controller addScriptMessageHandler:self name:@"sphere"];
+    // Add a script message handler for Sphere Analytics
+    [controller addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
+
     configuration.userContentController = controller;
     _webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:configuration];
     [self.view addSubview:self.webView];
@@ -364,19 +364,13 @@ SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"your website url"]];
     [self.webView loadRequest:request];
 }
-
-- (void)userContentController:(WKUserContentController *)userContentController
-      didReceiveScriptMessage:(WKScriptMessage *)message {
-
-    [SPRScriptMessageHandler handleReceiveScriptMessage:message];
-}
 @end
 ```
 
 `<ViewController.swift>`
 
 ```swift
-class ViewController: UIViewController, WKScriptMessageHandler {
+class ViewController: UIViewController {
     private var webView: WKWebView!
 
     override func viewDidLoad() {
@@ -384,18 +378,15 @@ class ViewController: UIViewController, WKScriptMessageHandler {
 
         // Initialize the webview and add self as a script message handler.
         self.webView = WKWebView(frame: self.view.frame)
-        self.webView.configuration.userContentController.add(self, name: "sphere")
+
+        // Add a script message handler for Sphere Analytics
+        self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: "sphere")
+
         self.view.addSubview(self.webView)
 
         // Navigate to site
         let request = URLRequest(url: URL(string: "your website url")!)
         self.webView.load(request)
-    }
-
-    func userContentController(_ userContentController: WKUserContentController,
-                               didReceive message: WKScriptMessage) {
-
-        SPRScriptMessageHandler.handleReceive(message)
     }
 }
 ```

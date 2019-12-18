@@ -2,15 +2,18 @@ import UIKit
 import WebKit
 import SphereSDK
 
-class SampleWebViewController: UIViewController, WKScriptMessageHandler {
+class SampleWebViewController: UIViewController {
     private var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Initialize the webview and add self as a script message handler.
+        // Initialize the webview
         self.webView = WKWebView(frame: self.view.frame)
-        self.webView.configuration.userContentController.add(self, name: "sphere")
+
+        // Add a script message handler for Sphere Analytics
+        self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: "sphere")
+
         self.view.addSubview(self.webView)
 
         // Navigate to site
@@ -22,9 +25,4 @@ class SampleWebViewController: UIViewController, WKScriptMessageHandler {
 //        self.webView.load(request)
     }
 
-    func userContentController(_ userContentController: WKUserContentController,
-                               didReceive message: WKScriptMessage) {
-
-        SPRScriptMessageHandler.handleReceive(message)
-    }
 }
