@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary *)build;
 
 - (instancetype)setParamWithString:(nullable NSString *)value forName:(NSString *)name NS_SWIFT_NAME(setStringParam(_:forName:));
-- (instancetype)setParamWithBool:(BOOL)value forName:(NSString *)name NS_SWIFT_NAME(setBoolParam(_:forName:));
 - (instancetype)setParamWithInt:(int)value forName:(NSString *)name;
 - (instancetype)setParamWithLong:(long long)value forName:(NSString *)name NS_SWIFT_NAME(setLongParam(_:forName:));
 - (instancetype)setParamWithDouble:(double)value forName:(NSString *)name NS_SWIFT_NAME(setDoubleParam(_:forName:));

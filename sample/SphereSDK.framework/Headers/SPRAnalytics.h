@@ -16,22 +16,47 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(SphereAnalytics)
 @interface SPRAnalytics : NSObject
 
++ (void)configureWithAppKey:(NSString *)appKey NS_SWIFT_NAME(configure(appKey:));
+
 + (void)logEventWithName:(NSString *)name
             paramBuilder:(nullable SPRParamBuilder *)builder NS_SWIFT_NAME(logEvent(_:paramBuilder:));
-+ (void)logPageViewEventWithPageName:(NSString *)pageName;
 
 + (void)setUserId:(nullable NSString *)userId;
+
++ (void)setGrade:(nullable NSString *)grade;
+
++ (void)setEmail:(nullable NSString *)email;
+
++ (void)setPhoneNumber:(nullable NSString *)number;
+
++ (void)setGender:(nullable NSString *)gender;
+
++ (void)setBirthYear:(int)year;
+
++ (void)setRemainingPoint:(int)point;
+
++ (void)setTotalEarnedPoint:(int)point;
+
++ (void)setTotalUsedPoint:(int)point;
+
++ (void)resetPoints;
+
 + (void)setUserProperty:(nullable NSString *)value forName:(NSString *)name;
+
 + (void)resetUserProperties;
 
-+ (void)requestUpload;
++ (void)enableLog:(BOOL)enable;
 
 + (void)setSessionTimeoutInterval:(NSTimeInterval)timeout;
 
++ (void)requestUpload;
+
++ (void)setAppLanguage:(nullable NSString *)language;
+
 + (void)setAnalyticsCollectionEnabled:(BOOL)enabled;
-+ (void)enableLog:(BOOL)enable;
 
 + (void)handleOpenUrl:(nullable NSURL *)url;
+
 + (void)handleContinueUserActivity:(nullable NSUserActivity *)userActivity;
 
 @end

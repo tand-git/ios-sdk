@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sMT-Ff-vxY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sMT-Ff-vxY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -136,31 +136,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Y51-B7-Ilz">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y51-B7-Ilz" id="FPQ-c9-otd">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPs-jv-VyU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                                    <state key="normal" title="Set User ID"/>
-                                                    <connections>
-                                                        <action selector="userIdClicked:" destination="rtW-qh-Ofm" eventType="touchUpInside" id="PlG-2p-hdl"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="cPs-jv-VyU" firstAttribute="height" secondItem="FPQ-c9-otd" secondAttribute="height" id="OaE-86-Uet"/>
-                                                <constraint firstItem="cPs-jv-VyU" firstAttribute="width" secondItem="FPQ-c9-otd" secondAttribute="width" id="e2q-Ud-Ihb"/>
-                                                <constraint firstItem="cPs-jv-VyU" firstAttribute="centerY" secondItem="FPQ-c9-otd" secondAttribute="centerY" id="iS6-Qy-rJB"/>
-                                                <constraint firstItem="cPs-jv-VyU" firstAttribute="centerX" secondItem="FPQ-c9-otd" secondAttribute="centerX" id="zUt-DQ-JaY"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ioN-ZN-T85">
-                                        <rect key="frame" x="0.0" y="148" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="88" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ioN-ZN-T85" id="lCa-l2-dvt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -179,6 +156,29 @@
                                                 <constraint firstItem="J7y-62-7aw" firstAttribute="centerY" secondItem="lCa-l2-dvt" secondAttribute="centerY" id="dP8-3Z-zLg"/>
                                                 <constraint firstItem="J7y-62-7aw" firstAttribute="width" secondItem="lCa-l2-dvt" secondAttribute="width" id="dXI-19-Y0E"/>
                                                 <constraint firstItem="J7y-62-7aw" firstAttribute="height" secondItem="lCa-l2-dvt" secondAttribute="height" id="yv8-PQ-Lex"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vjg-C5-ML0">
+                                        <rect key="frame" x="0.0" y="148" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vjg-C5-ML0" id="PXM-Ik-utB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0R-Pa-uqu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                                    <state key="normal" title="Reset User Properties"/>
+                                                    <connections>
+                                                        <action selector="resetUserPropertiesClicked:" destination="rtW-qh-Ofm" eventType="touchUpInside" id="Nwq-pF-v5w"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="centerY" secondItem="PXM-Ik-utB" secondAttribute="centerY" id="BQD-R9-eMy"/>
+                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="centerX" secondItem="PXM-Ik-utB" secondAttribute="centerX" id="DHx-9X-uJk"/>
+                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="width" secondItem="PXM-Ik-utB" secondAttribute="width" id="Mfb-4B-DZl"/>
+                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="height" secondItem="PXM-Ik-utB" secondAttribute="height" id="sG5-25-kYs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
