@@ -183,7 +183,7 @@ SDK가 초기화 되었다면 `logEvent` 함수를 이용하여 커스텀 이벤
 3. 파라미터값
     * 지원 타입 : NSString(최대 100자), int, long, float, double
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 // 이벤트 파라미터 설정
@@ -198,7 +198,7 @@ SPRParamBuilder *paramBuilder = [SPRParamBuilder builder];
 [SPRAnalytics logEventWithName:@"purchase_clicked" paramBuilder:nil];
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 // 이벤트 파라미터 설정
@@ -215,7 +215,7 @@ SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
 
 ## 사용자 속성 사용하기
 
-> 사용자 속성을 사용할 경우 수집된 이벤트들을 세분화하여 더욱 자세한 분석 정보를 얻을 수 있으며 수집된 정보들은 암호화되어 서버로 전송됩니다. 사용자 속성들은 한번 설정되면 이후 재설정 또는 초기화될 때까지 설정된 값으로 유지됩니다.
+> 사용자 속성을 사용할 경우 수집된 이벤트들을 세분화하여 더욱 자세한 분석 정보를 얻을 수 있으며 개인 정보들은 암호화되어 서버에 저장됩니다. 사용자 속성들은 한번 설정되면 이후 재설정 또는 초기화될 때까지 설정된 값으로 유지됩니다.
 
 사용자 속성 연동 시 고려해야 할 사항은 다음과 같으며 가능한 해당되는 모든 시점에 사용자 속성들을 설정해야 정확한 분석이 가능합니다.
 
@@ -228,22 +228,34 @@ SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
 해당 정보는 유저를 구분하기 위한 용도로만 사용되므로 사용자를 구분하는 어떠한 식별 아이디도 사용 가능합니다.  
 사용자 아이디는 최대 256자까지 설정가능하고 `nil`로 설정 시 사용자 아이디 정보는 초기화되고 로그아웃 상태로 설정됩니다.  
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
-// 사용자 아이디 설정 - 로그인: ON 상태
-[SPRAnalytics setUserId:@"[USER ID]"];
-// 사용자 아이디 초기화 - 로그아웃: OFF 상태
-[SPRAnalytics setUserId:nil];
+if (isLogIn) { // 로그인: ON 상태
+
+    // 사용자 아이디 설정
+    [SPRAnalytics setUserId:@"[USER ID]"];
+
+} else { // 로그아웃: OFF 상태
+
+    // 사용자 아이디 초기화
+    [SPRAnalytics setUserId:nil];
+}
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
-// 사용자 아이디 설정 - 로그인: ON 상태
-SphereAnalytics.setUserId("[USER ID]")
-// 사용자 아이디 초기화 - 로그아웃: OFF 상태
-SphereAnalytics.setUserId(nil)
+if (isLogIn) { // 로그인: ON 상태
+
+    // 사용자 아이디 설정
+    SphereAnalytics.setUserId("[USER ID]")
+
+} else { // 로그아웃: OFF 상태
+
+    // 사용자 아이디 초기화
+    SphereAnalytics.setUserId(nil)
+}
 ```
 
 ### 사용자 정보 설정
@@ -252,36 +264,68 @@ SphereAnalytics.setUserId(nil)
 설정된 사용자 정보들은 문자형의 경우 `nil`로 설정 시 초기화되며 출생년도의 경우 0으로 설정 시 초기화됩니다.  
 Sphere Analytics를 통해 메세지(준비중) 기능을 사용하기 위해서는 전화번호 또는 이메일 정보를 필수로 설정해야 합니다.
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
-// 등급 설정
-[SPRAnalytics setGrade:@"vip"];
-// 성별 설정
-[SPRAnalytics setGender:@"m"]; // 남성일 경우: "m"
-[SPRAnalytics setGender:@"f"]; // 여성일 경우: "f"
-// 출생년도 설정
-[SPRAnalytics setBirthYear:1995]; // 출생년도
-// 이메일 설정
-[SPRAnalytics setEmail:@"xxxx@xxxx.com"];
-// 전화번호 설정
-[SPRAnalytics setPhoneNumber:@"821011112222"];
+if (isLogIn) { // 로그인: ON 상태
+
+    // 등급 설정
+    [SPRAnalytics setGrade:@"vip"];
+    // 성별 설정
+    [SPRAnalytics setGender:@"m"]; // 남성일 경우: "m"
+//    [SPRAnalytics setGender:@"f"]; // 여성일 경우: "f"
+    // 출생년도 설정
+    [SPRAnalytics setBirthYear:1995]; // 출생년도
+    // 이메일 설정
+    [SPRAnalytics setEmail:@"xxxx@xxxx.com"];
+    // 전화번호 설정
+    [SPRAnalytics setPhoneNumber:@"821011112222"];
+
+} else { // 로그아웃: OFF 상태
+
+    // 등급 초기화
+    [SPRAnalytics setGrade:nil];
+    // 성별 초기화
+    [SPRAnalytics setGender:nil];
+    // 출생년도 초기화
+    [SPRAnalytics setBirthYear:0];
+    // 이메일 초기화
+    [SPRAnalytics setEmail:nil];
+    // 전화번호 초기화
+    [SPRAnalytics setPhoneNumber:nil];
+}
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
-// 등급 설정
-SphereAnalytics.setGrade("vip")
-// 성별 설정
-SphereAnalytics.setGender("m") // 남성일 경우: "m"
-SphereAnalytics.setGender("f") // 여성일 경우: "f"
-// 출생년도 설정
-SphereAnalytics.setBirthYear(1995) // 출생년도
-// 이메일 설정
-SphereAnalytics.setEmail("xxxx@xxxx.com")
-// 전화번호 설정
-SphereAnalytics.setPhoneNumber("821011112222")
+if (isLogIn) { // 로그인: ON 상태
+
+    // 등급 설정
+    SphereAnalytics.setGrade("vip")
+    // 성별 설정
+    SphereAnalytics.setGender("m") // 남성일 경우: "m"
+//    SphereAnalytics.setGender("f") // 여성일 경우: "f"
+    // 출생년도 설정
+    SphereAnalytics.setBirthYear(1995) // 출생년도
+    // 이메일 설정
+    SphereAnalytics.setEmail("xxxx@xxxx.com")
+    // 전화번호 설정
+    SphereAnalytics.setPhoneNumber("821011112222")
+
+} else { // 로그아웃: OFF 상태
+
+    // 등급 초기화
+    SphereAnalytics.setGrade(nil)
+    // 성별 초기화
+    SphereAnalytics.setGender(nil)
+    // 출생년도 초기화
+    SphereAnalytics.setBirthYear(0)
+    // 이메일 초기화
+    SphereAnalytics.setEmail(nil)
+    // 전화번호 초기화
+    SphereAnalytics.setPhoneNumber(nil)
+}
 ```
 
 ### 사용자 포인트 설정
@@ -290,22 +334,38 @@ SphereAnalytics.setPhoneNumber("821011112222")
 설정된 사용자 포인트 정보들은 `resetPoints` 함수 호출 시 일괄적으로 초기화 됩니다.  
 설정 가능한 포인트의 종류는 다음과 같으며 가능한 모든 포인트 정보를 설정해야 더욱 자세한 사용자 분석이 가능합니다.
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
-// 사용자 포인트 설정
-[SPRAnalytics setRemainingPoint:1000]; // 현재 보유 포인트
-[SPRAnalytics setTotalEarnedPoint:5000]; // 총 적립 포인트
-[SPRAnalytics setTotalUsedPoint:4000]; // 총 사용 포인트
+if (isLogIn) { // 로그인: ON 상태
+
+    // 사용자 포인트 설정
+    [SPRAnalytics setRemainingPoint:1000]; // 현재 보유 포인트
+    [SPRAnalytics setTotalEarnedPoint:5000]; // 총 적립 포인트
+    [SPRAnalytics setTotalUsedPoint:4000]; // 총 사용 포인트
+
+} else { // 로그아웃: OFF 상태
+
+    // 사용자 포인트 초기화
+    [SPRAnalytics resetPoints];
+}
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
-// 사용자 포인트 설정
-SphereAnalytics.setRemainingPoint(1000) // 현재 보유 포인트
-SphereAnalytics.setTotalEarnedPoint(5000) // 총 적립 포인트
-SphereAnalytics.setTotalUsedPoint(4000) // 총 사용 포인트
+if (isLogIn) { // 로그인: ON 상태
+
+    // 사용자 포인트 설정
+    SphereAnalytics.setRemainingPoint(1000) // 현재 보유 포인트
+    SphereAnalytics.setTotalEarnedPoint(5000) // 총 적립 포인트
+    SphereAnalytics.setTotalUsedPoint(4000) // 총 사용 포인트
+
+} else { // 로그아웃: OFF 상태
+
+    // 사용자 포인트 초기화(현재 보유 포인트, 총 적립 포인트, 총 사용 포인트)
+    SphereAnalytics.resetPoints()
+}
 ```
 
 ### 커스텀 사용자 속성 설정
@@ -324,7 +384,7 @@ SphereAnalytics.setTotalUsedPoint(4000) // 총 사용 포인트
     * 최대 100자
     * 지원 타입 : String
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 // 커스텀 사용자 속성 설정
@@ -333,7 +393,7 @@ SphereAnalytics.setTotalUsedPoint(4000) // 총 사용 포인트
 [SPRAnalytics setUserProperty:nil forName:@"user_property_name"];
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 // 커스텀 사용자 속성 설정
@@ -351,14 +411,14 @@ SphereAnalytics.setUserProperty(nil, forName: "user_property_name")
 3. 사용자 포인트: 현재 보유 포인트, 총 적립 포인트, 총 사용 포인트
 4. 커스텀 사용자 속성
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 // 사용자 속성 전체 초기화
 [SPRAnalytics resetUserProperties];
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 // 사용자 속성 전체 초기화
@@ -374,13 +434,13 @@ SphereAnalytics.resetUserProperties()
 로그 출력 함수를 활성화 하면 세션의 시작과 종료 및 이벤트 기록 로그와 에러 로그들을 확인할 수 있습니다.  
 기본 설정은 비활성화 상태이며 출력되는 로그들은 [SDK 로그를 통한 검증](#sdk-로그를-통한-검증)에서 확인 가능합니다.
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 [SPRAnalytics enableLog:true]; // 활성화
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 SphereAnalytics.enableLog(true) // 활성화
@@ -396,13 +456,13 @@ SphereAnalytics.enableLog(true) // 활성화
 
 아래 코드를 통해 사용자 세션 타임아웃 시간을 변경할 수 있습니다. (기본 설정: 30분)  
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 [SPRAnalytics setSessionTimeoutInterval:60]; // 1분
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 SphereAnalytics.setSessionTimeoutInterval(60) // 1분
@@ -413,13 +473,13 @@ SphereAnalytics.setSessionTimeoutInterval(60) // 1분
 기본적으로 Sphere Analytics는 앱이 실행된 후 비활성화되는 시점에 자동으로 기록된 모든 이벤트들을 서버에 전송합니다.  
 하지만 `requestUpload` 함수를 호출할 경우 호출 시점까지 기록된 모든 이벤트들을 즉시 서버로 전송이 가능하며 해당 시점에 즉시 이벤트 수집이 필요한 경우에만 사용하기를 권장합니다.
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 [SPRAnalytics requestUpload];
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 SphereAnalytics.requestUpload()
@@ -430,14 +490,14 @@ SphereAnalytics.requestUpload()
 기본적으로 시스템 설정의 언어 정보를 사용하기 때문에 대부분의 앱에서는 설정할 필요가 없습니다.  
 시스템 설정의 언어 설정이 아닌 앱 내에서 별도의 언어 설정을 사용하는 경우에만 해당되는 사용자 속성입니다.  
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 // 앱 사용 언어 코드 설정
 [SPRAnalytics setAppLanguage:@"en"]; // 언어 코드
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 // 앱 사용 언어 코드 설정
@@ -449,13 +509,13 @@ SphereAnalytics.setAppLanguage("en") // 언어 코드
 Sphere Analytics의 이벤트 수집 기능을 비활성화하기를 원할 경우 아래와 같은 코드를 추가합니다.
 기본 설정은 활성화 상태이며 비활성화된 이후로는 다시 활성화하기 전까지 이벤트가 수집되지 않습니다.
 
-`<.m>`
+`<Objective-C>`
 
 ```objectivec
 [SPRAnalytics setAnalyticsCollectionEnabled:false]; // 비활성화
 ```
 
-`<.swift>`
+`<Swift>`
 
 ```swift
 SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
