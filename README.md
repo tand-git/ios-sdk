@@ -40,6 +40,8 @@ Sphere Analytics 사용을 위해서는 기본적으로 앱키(App key)가 필�
 ### SDK 다운로드
 
 SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이지](https://github.com/tand-git/android-sdk/releases)를 방문하면 현재까지 릴리즈된 SDK 버전들을 확인할 수 있으며 가장 최신 버전의 SDK 파일(SphereSDK.framework.zip)을 선택하여 다운로드 후 압축을 해제합니다.
+* 디바이스용 빌드 SDK: SphereSDK.framework.zip
+* 시뮬레이터용 빌드 SDK: SphereSDK.framework.simulator.zip 
 
 ### Xcode 프로젝트 설정
 
