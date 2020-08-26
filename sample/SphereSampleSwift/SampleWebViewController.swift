@@ -10,11 +10,12 @@ class SampleWebViewController: UIViewController {
 
         // Initialize the webview
         self.webView = WKWebView(frame: self.view.frame)
+        self.view.addSubview(self.webView)
+
 
         // Add a script message handler for Sphere Analytics
         self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: "sphere")
 
-        self.view.addSubview(self.webView)
 
         // Navigate to site
         guard let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "web") else { return }

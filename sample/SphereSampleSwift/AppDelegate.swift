@@ -8,10 +8,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-//        SphereAnalytics.setSessionTimeoutInterval(60) // 1분
-        SphereAnalytics.enableLog(true) // 활성화
+        // 로그 활성화
+        SphereAnalytics.enableLog(true)
 
+        // Sphere Analytics SDK 초기화
         SphereAnalytics.configure(appKey: "Your Sphere SDK App Key")
+
+        // Sphere In-App Message 활성화
+//        SphereInAppMessage.start()
 
         return true
     }

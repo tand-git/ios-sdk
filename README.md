@@ -13,12 +13,9 @@
 * [사용자 속성 사용하기](#사용자-속성-사용하기)
   * [사용자 아이디 설정](#사용자-아이디-설정)
   * [사용자 정보 설정](#사용자-정보-설정)
-  * [사용자 포인트 설정](#사용자-포인트-설정)
   * [커스텀 사용자 속성 설정](#커스텀-사용자-속성-설정)
-  * [사용자 속성 전체 초기화](#사용자-속성-전체-초기화)
 * [추가 설정](#추가-설정)
   * [로그 출력](#로그-출력)
-  * [사용자 세션 관리](#사용자-세션-관리)
   * [이벤트 즉시 전송](#이벤트-즉시-전송)
   * [앱 언어 설정](#앱-언어-설정)
   * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
@@ -58,7 +55,7 @@ SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이�
 Sphere SDK 라이브러리를 프로젝트에 추가하였다면 다음 코드와 같이 앱키와 함께 Sphere SDK를 초기화합니다.  
 앱키가 없는 경우 [Sphere Analytics 시작하기](#sphere-analytics-시작하기)을 참고하여 앱키를 발급받습니다.
 
-`<AppDelegate.m>`
+`<Objective-C> - AppDelegate.m`
 
 ```objectivec
 @import SphereSDK;
@@ -67,6 +64,7 @@ Sphere SDK 라이브러리를 프로젝트에 추가하였다면 다음 코드�
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    // Sphere Analytics SDK 초기화
     [SPRAnalytics configureWithAppKey:@"Your Sphere Analytics App Key"];
 
     return YES;
@@ -75,7 +73,7 @@ Sphere SDK 라이브러리를 프로젝트에 추가하였다면 다음 코드�
 @end
 ```
 
-`<AppDelegate.swift>`
+`<Swift> - AppDelegate.swift`
 
 ```swift
 import SphereSDK
@@ -85,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+    // Sphere Analytics SDK 초기화
         SphereAnalytics.configure(appKey: "Your Sphere Analytics App Key");
 
         return true
@@ -102,60 +101,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ### 웹뷰 자바스크립트 메세지 핸들러 등록
 
 웹뷰에 스크립트 메세지 핸들러를 등록하여 웹에서 호출하는 Sphere 자바스크립트 인터페이스를 Sphere 네이티브 인터페이스로 연결합니다.  
-관련 샘플 소스는 [sample/SphereSample/SampleWebViewController.m](sample/SphereSample/SampleWebViewController.m) 또는 [sample/SphereSampleSwift/SampleWebViewController.swift](sample/SphereSampleSwift/SampleWebViewController.swift)에서 확인할 수 있습니다.
+관련 샘플 소스는 [SampleWebViewController.m](sample/SphereSample/SampleWebViewController.m) 또는 [SampleWebViewController.swift](sample/SphereSampleSwift/SampleWebViewController.swift)에서 확인할 수 있습니다.
 
-`<ViewController.m>`
+`<Objective-C>`
 
 ```objectivec
-@interface ViewController ()
-@property (nonatomic, readonly) WKWebView *webView;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Initialize the webview and add self as a script message handler.
-    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-    WKUserContentController *controller = [[WKUserContentController alloc] init];
-
-    // Add a script message handler for Sphere Analytics
-    [controller addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
-
-    configuration.userContentController = controller;
-    _webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:configuration];
-    [self.view addSubview:self.webView];
-
-    // Navigate to site
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"your website url"]];
-    [self.webView loadRequest:request];
-}
-@end
+// Add a script message handler for Sphere Analytics
+[self.webView.configuration.userContentController addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
 ```
 
-`<ViewController.swift>`
+`<Swift> - ViewController.swift`
 
 ```swift
-class ViewController: UIViewController {
-    private var webView: WKWebView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Initialize the webview and add self as a script message handler.
-        self.webView = WKWebView(frame: self.view.frame)
-
-        // Add a script message handler for Sphere Analytics
-        self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: "sphere")
-
-        self.view.addSubview(self.webView)
-
-        // Navigate to site
-        let request = URLRequest(url: URL(string: "your website url")!)
-        self.webView.load(request)
-    }
-}
+// Add a script message handler for Sphere Analytics
+self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: "sphere")
 ```
 
 ### 자바스크립트 API
@@ -219,10 +178,10 @@ SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
 
 > 사용자 속성을 사용할 경우 수집된 이벤트들을 세분화하여 더욱 자세한 분석 정보를 얻을 수 있으며 개인 정보들은 암호화되어 서버에 저장됩니다. 사용자 속성들은 한번 설정되면 이후 재설정 또는 초기화될 때까지 설정된 값으로 유지됩니다.
 
-사용자 속성 연동 시 고려해야 할 사항은 다음과 같으며 가능한 해당되는 모든 시점에 사용자 속성들을 설정해야 정확한 분석이 가능합니다.
+사용자 속성 연동 시 고려해야 할 사항은 다음과 같으며 해당되는 모든 시점에 사용자 속성들을 설정해야 정확한 분석이 가능합니다.
 
-1. 앱이 실행된 후 해당 속성 정보를 알 수 있는 가장 빠른 시점(예:홈 화면 진입)에 사용자 속성들을 설정
-2. 앱 사용 중 해당 사용자 속성이 변경 시 변경된 사용자 속성들을 즉시 설정
+1. 자동 로그인 사용 : 로그인 상태 및 사용자 정보를 알 수 있는 가장 빠른 시점에 로그온 또는 로그오프 상태에 따라 사용자 아이디 및 정보를 설정 또는 초기화
+2. 자동 로그인 미사용 : 로그인 또는 로그아웃 시 해당 상태에 따라 해당 사용자 아이디 및 정보를 설정 또는 초기화
 
 ### 사용자 아이디 설정
 
@@ -262,15 +221,23 @@ if (isLogIn) { // 로그인: ON 상태
 
 ### 사용자 정보 설정
 
-추가적인 사용자 정보(등급, 성별, 출생년도, 전화번호, 이메일)를 설정합니다.  
-설정된 사용자 정보들은 문자형의 경우 `nil`로 설정 시 초기화되며 출생년도의 경우 0으로 설정 시 초기화됩니다.  
-Sphere Analytics를 통해 사용자에게 SMS, 카카오톡 알림, 이메일 메시지(2020년 하반기 오픈예정) 보내는 기능을 이용하기 위해서는 전화번호 또는 이메일 정보를 필수로 설정해야 합니다.
+추가적인 사용자 정보(보유 포인트, 등급, 성별, 출생년도, 전화번호, 이메일)를 설정합니다.  
+로그아웃 상태 시 다음과 같이 설정된 사용자 정보들을 초기화해야 합니다.
+
+1. 문자형(등급, 성별, 출생년도, 전화번호, 이메일) 초기화 : `nil`로 설정
+2. 숫자형(보유 포인트) 초기화 : `resetPoints` 함수 호출
+3. 숫자형(출생년도) 초기화 : `0`으로 설정
 
 `<Objective-C>`
 
 ```objectivec
 if (isLogIn) { // 로그인: ON 상태
 
+    // 사용자 아이디 설정
+    [SPRAnalytics setUserId:@"[USER ID]"];
+
+    // 보유 포인트 설정
+    [SPRAnalytics setRemainingPoint:1000];
     // 등급 설정
     [SPRAnalytics setGrade:@"vip"];
     // 성별 설정
@@ -285,6 +252,11 @@ if (isLogIn) { // 로그인: ON 상태
 
 } else { // 로그아웃: OFF 상태
 
+    // 사용자 아이디 초기화
+    [SPRAnalytics setUserId:nil];
+
+    // 보유 포인트 초기화
+    [SPRAnalytics resetPoints];
     // 등급 초기화
     [SPRAnalytics setGrade:nil];
     // 성별 초기화
@@ -303,6 +275,11 @@ if (isLogIn) { // 로그인: ON 상태
 ```swift
 if (isLogIn) { // 로그인: ON 상태
 
+    // 사용자 아이디 설정
+    SphereAnalytics.setUserId("[USER ID]")
+
+    // 보유 포인트 설정
+    SphereAnalytics.setRemainingPoint(1000)
     // 등급 설정
     SphereAnalytics.setGrade("vip")
     // 성별 설정
@@ -317,6 +294,11 @@ if (isLogIn) { // 로그인: ON 상태
 
 } else { // 로그아웃: OFF 상태
 
+    // 사용자 아이디 초기화
+    SphereAnalytics.setUserId(nil)
+
+    // 보유 포인트 초기화
+    SphereAnalytics.resetPoints()
     // 등급 초기화
     SphereAnalytics.setGrade(nil)
     // 성별 초기화
@@ -330,46 +312,6 @@ if (isLogIn) { // 로그인: ON 상태
 }
 ```
 
-### 사용자 포인트 설정
-
-사용자의 포인트 정보(현재 보유 포인트, 총 적립 포인트, 총 사용 포인트)를 설정합니다.  
-설정된 사용자 포인트 정보들은 `resetPoints` 함수 호출 시 일괄적으로 초기화 됩니다.  
-설정 가능한 포인트의 종류는 다음과 같으며 가능한 모든 포인트 정보를 설정해야 더욱 자세한 사용자 분석이 가능합니다.
-
-`<Objective-C>`
-
-```objectivec
-if (isLogIn) { // 로그인: ON 상태
-
-    // 사용자 포인트 설정
-    [SPRAnalytics setRemainingPoint:1000]; // 현재 보유 포인트
-    [SPRAnalytics setTotalEarnedPoint:5000]; // 총 적립 포인트
-    [SPRAnalytics setTotalUsedPoint:4000]; // 총 사용 포인트
-
-} else { // 로그아웃: OFF 상태
-
-    // 사용자 포인트 초기화
-    [SPRAnalytics resetPoints];
-}
-```
-
-`<Swift>`
-
-```swift
-if (isLogIn) { // 로그인: ON 상태
-
-    // 사용자 포인트 설정
-    SphereAnalytics.setRemainingPoint(1000) // 현재 보유 포인트
-    SphereAnalytics.setTotalEarnedPoint(5000) // 총 적립 포인트
-    SphereAnalytics.setTotalUsedPoint(4000) // 총 사용 포인트
-
-} else { // 로그아웃: OFF 상태
-
-    // 사용자 포인트 초기화(현재 보유 포인트, 총 적립 포인트, 총 사용 포인트)
-    SphereAnalytics.resetPoints()
-}
-```
-
 ### 커스텀 사용자 속성 설정
 
 미리 정의되지 않은 사용자 속성 정보를 사용 시 `setUserProperty` 함수를 이용하여 커스텀 사용자 속성을 설정할 수 있습니다.  
@@ -378,9 +320,10 @@ if (isLogIn) { // 로그인: ON 상태
 사용자 속성에 관한 규칙은 다음과 같습니다.
 
 1. 사용자 속성명
-    * 최대 40자  
-    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용  
+    * 최대 40자
+    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용
     * 첫 글자는 영문 대소문자만 허용
+    * "sap"으로 시작되는 속성명은 사전 정의된 속성명으로 사용 불가
 
 2. 사용자 속성값
     * 최대 100자
@@ -404,29 +347,6 @@ SphereAnalytics.setUserProperty("user_property_value", forName: "user_property_n
 SphereAnalytics.setUserProperty(nil, forName: "user_property_name")
 ```
 
-### 사용자 속성 전체 초기화
-
-현재까지 설정된 전체 사용자 속성을 초기화합니다. 대상이 되는 속성들은 다음과 같습니다.
-
-1. 사용자 아이디
-2. 사용자 정보: 등급, 성별, 출생년도, 전화번호, 이메일
-3. 사용자 포인트: 현재 보유 포인트, 총 적립 포인트, 총 사용 포인트
-4. 커스텀 사용자 속성
-
-`<Objective-C>`
-
-```objectivec
-// 사용자 속성 전체 초기화
-[SPRAnalytics resetUserProperties];
-```
-
-`<Swift>`
-
-```swift
-// 사용자 속성 전체 초기화
-SphereAnalytics.resetUserProperties()
-```
-
 ## 추가 설정
 
 > 추가 설정은 필수적인 연동 사항은 아니며 필요한 경우 선택적으로 사용이 가능합니다.
@@ -446,28 +366,6 @@ SphereAnalytics.resetUserProperties()
 
 ```swift
 SphereAnalytics.enableLog(true) // 활성화
-```
-
-### 사용자 세션 관리
-
-사용자의 앱 사용 시간은 세션 관리를 통해 기록되며 사용자 세션 정보를 위한 신규 세션 생성 규칙은 다음과 같습니다.  
-앱 종료 후 일정 시간(기본 설정: 30분)이 지나고 앱 실행 시 신규 세션이 시작되고 "#session" 이벤트가 기록됩니다.
-
-* 앱이 비활성화 상태에서 활성화 상태로 변경 시 타임아웃 시간(기본 설정: 30분)이 경과한 후에만 신규 세션 시작
-* 앱이 활성화 시 이전 세션의 시작 시간과 날짜가 변경된 경우 신규 세션 시작
-
-아래 코드를 통해 사용자 세션 타임아웃 시간을 변경할 수 있습니다. (기본 설정: 5분)  
-
-`<Objective-C>`
-
-```objectivec
-[SPRAnalytics setSessionTimeoutInterval:60]; // 1분
-```
-
-`<Swift>`
-
-```swift
-SphereAnalytics.setSessionTimeoutInterval(60) // 1분
 ```
 
 ### 이벤트 즉시 전송

@@ -13,18 +13,16 @@
     [super viewDidLoad];
 
     // Initialize the webview
-    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-    WKUserContentController *controller = [[WKUserContentController alloc] init];
-
-    // Add a script message handler for Sphere Analytics
-    [controller addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
-
-    configuration.userContentController = controller;
-    _webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:configuration];
+    _webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:self.webView];
 
+
+    // Add a script message handler for Sphere Analytics
+    [self.webView.configuration.userContentController addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
+
+
     // Navigate to site
-    NSString* fileURL = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web/index.html"];
+    NSString* fileURL = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"index.html"];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:fileURL]];
 //    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"your website url"]];
 

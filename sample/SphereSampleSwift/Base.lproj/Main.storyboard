@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sMT-Ff-vxY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sMT-Ff-vxY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,8 +15,8 @@
                     <view key="view" contentMode="scaleToFill" id="Vgc-Nb-0Hq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="e5f-Z0-iWQ"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cs-Xq-V46" sceneMemberID="firstResponder"/>
@@ -41,7 +41,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nY-aw-rvt">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nY-aw-rvt">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                                     <state key="normal" title="Analytics Sample"/>
                                                     <connections>
@@ -64,7 +64,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewP-WL-4Ml">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewP-WL-4Ml">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                                     <state key="normal" title="Analytics WebView"/>
                                                     <connections>
@@ -120,7 +120,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxD-dk-PfL">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxD-dk-PfL">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                                     <state key="normal" title="Log Event"/>
                                                     <connections>
@@ -143,7 +143,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7y-62-7aw">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7y-62-7aw">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                                     <state key="normal" title="Set User Property"/>
                                                     <connections>
@@ -156,29 +156,6 @@
                                                 <constraint firstItem="J7y-62-7aw" firstAttribute="centerY" secondItem="lCa-l2-dvt" secondAttribute="centerY" id="dP8-3Z-zLg"/>
                                                 <constraint firstItem="J7y-62-7aw" firstAttribute="width" secondItem="lCa-l2-dvt" secondAttribute="width" id="dXI-19-Y0E"/>
                                                 <constraint firstItem="J7y-62-7aw" firstAttribute="height" secondItem="lCa-l2-dvt" secondAttribute="height" id="yv8-PQ-Lex"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vjg-C5-ML0">
-                                        <rect key="frame" x="0.0" y="148" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vjg-C5-ML0" id="PXM-Ik-utB">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0R-Pa-uqu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                                    <state key="normal" title="Reset User Properties"/>
-                                                    <connections>
-                                                        <action selector="resetUserPropertiesClicked:" destination="rtW-qh-Ofm" eventType="touchUpInside" id="Nwq-pF-v5w"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="centerY" secondItem="PXM-Ik-utB" secondAttribute="centerY" id="BQD-R9-eMy"/>
-                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="centerX" secondItem="PXM-Ik-utB" secondAttribute="centerX" id="DHx-9X-uJk"/>
-                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="width" secondItem="PXM-Ik-utB" secondAttribute="width" id="Mfb-4B-DZl"/>
-                                                <constraint firstItem="f0R-Pa-uqu" firstAttribute="height" secondItem="PXM-Ik-utB" secondAttribute="height" id="sG5-25-kYs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4330963522EEF95D00756750 /* SphereSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4330963422EEF95D00756750 /* SphereSDK.framework */; };
-		4330963622EEF95D00756750 /* SphereSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4330963422EEF95D00756750 /* SphereSDK.framework */; };
 		43C7DA4022D83290007FFAAC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C7DA3F22D83290007FFAAC /* AppDelegate.m */; };
 		43C7DA4622D83290007FFAAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA4422D83290007FFAAC /* Main.storyboard */; };
 		43C7DA4822D83291007FFAAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA4722D83291007FFAAC /* Assets.xcassets */; };
@@ -18,16 +16,19 @@
 		43C7DA6022D832AC007FFAAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA5E22D832AC007FFAAC /* Main.storyboard */; };
 		43C7DA6222D832AC007FFAAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA6122D832AC007FFAAC /* Assets.xcassets */; };
 		43C7DA6522D832AC007FFAAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA6322D832AC007FFAAC /* LaunchScreen.storyboard */; };
-		43C7DA6B22D832D4007FFAAC /* web in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA6A22D832D4007FFAAC /* web */; };
-		43C7DA6C22D832D4007FFAAC /* web in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA6A22D832D4007FFAAC /* web */; };
 		43C7DA7C22D84FCB007FFAAC /* SampleAnalyticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C7DA7B22D84FCB007FFAAC /* SampleAnalyticsViewController.m */; };
 		43C7DA8222D88BA8007FFAAC /* SampleWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C7DA8122D88BA8007FFAAC /* SampleWebViewController.swift */; };
 		43C7DA8422D88BCF007FFAAC /* SampleAnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C7DA8322D88BCF007FFAAC /* SampleAnalyticsViewController.swift */; };
 		43C7DA8722D88BF9007FFAAC /* SampleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C7DA8622D88BF9007FFAAC /* SampleWebViewController.m */; };
+		43FDE0D724D2C08A0003C004 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D524D2C08A0003C004 /* index.html */; };
+		43FDE0D824D2C08A0003C004 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D524D2C08A0003C004 /* index.html */; };
+		43FDE0D924D2C08A0003C004 /* sphereAnalytics.js in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */; };
+		43FDE0DA24D2C08A0003C004 /* sphereAnalytics.js in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */; };
+		43FDE0DC24D2C0E60003C004 /* SphereSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FDE0DB24D2C0E60003C004 /* SphereSDK.framework */; };
+		43FDE0DD24D2C0E60003C004 /* SphereSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FDE0DB24D2C0E60003C004 /* SphereSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4330963422EEF95D00756750 /* SphereSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SphereSDK.framework; sourceTree = "<group>"; };
 		43C7DA3B22D83290007FFAAC /* SphereSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SphereSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C7DA3E22D83290007FFAAC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		43C7DA3F22D83290007FFAAC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,13 +43,15 @@
 		43C7DA6122D832AC007FFAAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43C7DA6422D832AC007FFAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43C7DA6622D832AC007FFAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43C7DA6A22D832D4007FFAAC /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; path = web; sourceTree = "<group>"; };
 		43C7DA7A22D84FCB007FFAAC /* SampleAnalyticsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleAnalyticsViewController.h; sourceTree = "<group>"; };
 		43C7DA7B22D84FCB007FFAAC /* SampleAnalyticsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleAnalyticsViewController.m; sourceTree = "<group>"; };
 		43C7DA8122D88BA8007FFAAC /* SampleWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleWebViewController.swift; sourceTree = "<group>"; };
 		43C7DA8322D88BCF007FFAAC /* SampleAnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleAnalyticsViewController.swift; sourceTree = "<group>"; };
 		43C7DA8522D88BF9007FFAAC /* SampleWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleWebViewController.h; sourceTree = "<group>"; };
 		43C7DA8622D88BF9007FFAAC /* SampleWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleWebViewController.m; sourceTree = "<group>"; };
+		43FDE0D524D2C08A0003C004 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sphereAnalytics.js; sourceTree = "<group>"; };
+		43FDE0DB24D2C0E60003C004 /* SphereSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SphereSDK.framework; path = frameworks/SphereSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4330963522EEF95D00756750 /* SphereSDK.framework in Frameworks */,
+				43FDE0DC24D2C0E60003C004 /* SphereSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4330963622EEF95D00756750 /* SphereSDK.framework in Frameworks */,
+				43FDE0DD24D2C0E60003C004 /* SphereSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,8 +77,7 @@
 		43C7DA3222D83290007FFAAC = {
 			isa = PBXGroup;
 			children = (
-				4330963422EEF95D00756750 /* SphereSDK.framework */,
-				43C7DA6A22D832D4007FFAAC /* web */,
+				43FDE0D424D2C08A0003C004 /* web */,
 				43C7DA3D22D83290007FFAAC /* SphereSample */,
 				43C7DA5922D832AC007FFAAC /* SphereSampleSwift */,
 				43C7DA3C22D83290007FFAAC /* Products */,
@@ -127,8 +129,18 @@
 		43C7DA6D22D8340A007FFAAC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43FDE0DB24D2C0E60003C004 /* SphereSDK.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		43FDE0D424D2C08A0003C004 /* web */ = {
+			isa = PBXGroup;
+			children = (
+				43FDE0D524D2C08A0003C004 /* index.html */,
+				43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */,
+			);
+			path = web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,8 +222,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FDE0D924D2C08A0003C004 /* sphereAnalytics.js in Resources */,
 				43C7DA4B22D83291007FFAAC /* LaunchScreen.storyboard in Resources */,
-				43C7DA6B22D832D4007FFAAC /* web in Resources */,
+				43FDE0D724D2C08A0003C004 /* index.html in Resources */,
 				43C7DA4822D83291007FFAAC /* Assets.xcassets in Resources */,
 				43C7DA4622D83290007FFAAC /* Main.storyboard in Resources */,
 			);
@@ -221,8 +234,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FDE0DA24D2C08A0003C004 /* sphereAnalytics.js in Resources */,
 				43C7DA6522D832AC007FFAAC /* LaunchScreen.storyboard in Resources */,
-				43C7DA6C22D832D4007FFAAC /* web in Resources */,
+				43FDE0D824D2C08A0003C004 /* index.html in Resources */,
 				43C7DA6222D832AC007FFAAC /* Assets.xcassets in Resources */,
 				43C7DA6022D832AC007FFAAC /* Main.storyboard in Resources */,
 			);

@@ -3,6 +3,13 @@ import SphereSDK
 
 class SampleAnalyticsViewController: UITableViewController {
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // 파라미터가 없는 이벤트 기록
+        SphereAnalytics.logEvent("purchaseView", paramBuilder: nil)
+    }
+
     @IBAction func logEventClicked(_ sender: Any) {
         // 이벤트 파라미터 설정
         let paramBuilder = SPRParamBuilder()
@@ -11,9 +18,6 @@ class SampleAnalyticsViewController: UITableViewController {
             .setDoubleParam(9.9, forName: "price")
         // 이벤트 기록
         SphereAnalytics.logEvent("purchase", paramBuilder: paramBuilder)
-
-        // 파라미터가 없는 이벤트 기록
-        SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
     }
 
     @IBAction func userPropertyClicked(_ sender: Any) {
@@ -25,6 +29,8 @@ class SampleAnalyticsViewController: UITableViewController {
             // 사용자 아이디 설정
             SphereAnalytics.setUserId("[USER ID]")
 
+            // 보유 포인트 설정
+            SphereAnalytics.setRemainingPoint(1000)
             // 등급 설정
             SphereAnalytics.setGrade("vip")
             // 성별 설정
@@ -37,16 +43,13 @@ class SampleAnalyticsViewController: UITableViewController {
             // 전화번호 설정
             SphereAnalytics.setPhoneNumber("821011112222")
 
-            // 사용자 포인트 설정
-            SphereAnalytics.setRemainingPoint(1000) // 현재 보유 포인트
-            SphereAnalytics.setTotalEarnedPoint(5000) // 총 적립 포인트
-            SphereAnalytics.setTotalUsedPoint(4000) // 총 사용 포인트
-
         } else { // 로그아웃: OFF 상태
 
             // 사용자 아이디 초기화
             SphereAnalytics.setUserId(nil)
 
+            // 보유 포인트 초기화
+            SphereAnalytics.resetPoints()
             // 등급 초기화
             SphereAnalytics.setGrade(nil)
             // 성별 초기화
@@ -57,19 +60,6 @@ class SampleAnalyticsViewController: UITableViewController {
             SphereAnalytics.setEmail(nil)
             // 전화번호 초기화
             SphereAnalytics.setPhoneNumber(nil)
-
-            // 사용자 포인트 초기화(현재 보유 포인트, 총 적립 포인트, 총 사용 포인트)
-            SphereAnalytics.resetPoints()
         }
-
-        // 커스텀 사용자 속성 설정
-        SphereAnalytics.setUserProperty("user_property_value", forName: "user_property_name")
-        // 커스텀 사용자 속성 초기화
-//        SphereAnalytics.setUserProperty(nil, forName: "user_property_name")
-    }
-
-    @IBAction func resetUserPropertiesClicked(_ sender: Any) {
-        // 사용자 속성 전체 초기화
-        SphereAnalytics.resetUserProperties()
     }
 }

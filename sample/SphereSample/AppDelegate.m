@@ -9,10 +9,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-//    [SPRAnalytics setSessionTimeoutInterval:60]; // 1분
-    [SPRAnalytics enableLog:true]; // 활성화
+    // 로그 활성화
+    [SPRAnalytics enableLog:true];
 
+    // Sphere Analytics SDK 초기화
     [SPRAnalytics configureWithAppKey:@"Your Sphere SDK App Key"];
+
+    // Sphere In-App Message 활성화
+//    [SPRInAppMessage start];
 
     return YES;
 }

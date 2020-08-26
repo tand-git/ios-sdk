@@ -1,6 +1,0 @@
-framework module SphereSDK {
-  umbrella header "SphereSDK.h"
-
-  export *
-  module * { export * }
-}
