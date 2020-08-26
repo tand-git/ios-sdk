@@ -17,7 +17,6 @@
 * [추가 설정](#추가-설정)
   * [로그 출력](#로그-출력)
   * [이벤트 즉시 전송](#이벤트-즉시-전송)
-  * [앱 언어 설정](#앱-언어-설정)
   * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
 
 ## 기본 연동
@@ -37,8 +36,6 @@ Sphere Analytics 사용을 위해서는 기본적으로 앱키(App key)가 필�
 ### SDK 다운로드
 
 SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이지](https://github.com/tand-git/android-sdk/releases)를 방문하면 현재까지 릴리즈된 SDK 버전들을 확인할 수 있으며 가장 최신 버전의 SDK 파일(SphereSDK.framework.zip)을 선택하여 다운로드 후 압축을 해제합니다.
-* 디바이스용 빌드 SDK: SphereSDK.framework.zip
-* 시뮬레이터용 빌드 SDK: SphereSDK.framework.simulator.zip 
 
 ### Xcode 프로젝트 설정
 
@@ -383,25 +380,6 @@ SphereAnalytics.enableLog(true) // 활성화
 
 ```swift
 SphereAnalytics.requestUpload()
-```
-
-### 앱 언어 설정
-
-기본적으로 시스템 설정의 언어 정보를 사용하기 때문에 대부분의 앱에서는 설정할 필요가 없습니다.  
-시스템 설정의 언어 설정이 아닌 앱 내에서 별도의 언어 설정을 사용하는 경우에만 해당되는 사용자 속성입니다.  
-
-`<Objective-C>`
-
-```objectivec
-// 앱 사용 언어 코드 설정
-[SPRAnalytics setAppLanguage:@"en"]; // 언어 코드
-```
-
-`<Swift>`
-
-```swift
-// 앱 사용 언어 코드 설정
-SphereAnalytics.setAppLanguage("en") // 언어 코드
 ```
 
 ### 이벤트 수집 비활성화
