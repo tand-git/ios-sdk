@@ -14,9 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sphere Analytics SDK 초기화
         SphereAnalytics.configure(appKey: "Your Sphere SDK App Key")
 
-        // Sphere In-App Message 활성화
-//        SphereInAppMessage.start()
-
         return true
     }
 }

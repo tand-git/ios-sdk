@@ -18,7 +18,7 @@ class SampleWebViewController: UIViewController {
 
 
         // Navigate to site
-        guard let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "web") else { return }
+        guard let url = Bundle.main.url(forResource: "index", withExtension: "html") else { return }
 
         self.webView.loadFileURL(url, allowingReadAccessTo: url)
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43B285D82511C4D70065749A /* sphereAnalytics.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 43B285D72511C4D70065749A /* sphereAnalytics.min.js */; };
+		43B285D92511C4D70065749A /* sphereAnalytics.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 43B285D72511C4D70065749A /* sphereAnalytics.min.js */; };
 		43C7DA4022D83290007FFAAC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C7DA3F22D83290007FFAAC /* AppDelegate.m */; };
 		43C7DA4622D83290007FFAAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA4422D83290007FFAAC /* Main.storyboard */; };
 		43C7DA4822D83291007FFAAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C7DA4722D83291007FFAAC /* Assets.xcassets */; };
@@ -22,13 +24,12 @@
 		43C7DA8722D88BF9007FFAAC /* SampleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C7DA8622D88BF9007FFAAC /* SampleWebViewController.m */; };
 		43FDE0D724D2C08A0003C004 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D524D2C08A0003C004 /* index.html */; };
 		43FDE0D824D2C08A0003C004 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D524D2C08A0003C004 /* index.html */; };
-		43FDE0D924D2C08A0003C004 /* sphereAnalytics.js in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */; };
-		43FDE0DA24D2C08A0003C004 /* sphereAnalytics.js in Resources */ = {isa = PBXBuildFile; fileRef = 43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */; };
 		43FDE0DC24D2C0E60003C004 /* SphereSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FDE0DB24D2C0E60003C004 /* SphereSDK.framework */; };
 		43FDE0DD24D2C0E60003C004 /* SphereSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FDE0DB24D2C0E60003C004 /* SphereSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43B285D72511C4D70065749A /* sphereAnalytics.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sphereAnalytics.min.js; sourceTree = "<group>"; };
 		43C7DA3B22D83290007FFAAC /* SphereSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SphereSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C7DA3E22D83290007FFAAC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		43C7DA3F22D83290007FFAAC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		43C7DA8522D88BF9007FFAAC /* SampleWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleWebViewController.h; sourceTree = "<group>"; };
 		43C7DA8622D88BF9007FFAAC /* SampleWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleWebViewController.m; sourceTree = "<group>"; };
 		43FDE0D524D2C08A0003C004 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sphereAnalytics.js; sourceTree = "<group>"; };
 		43FDE0DB24D2C0E60003C004 /* SphereSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SphereSDK.framework; path = frameworks/SphereSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				43FDE0D524D2C08A0003C004 /* index.html */,
-				43FDE0D624D2C08A0003C004 /* sphereAnalytics.js */,
+				43B285D72511C4D70065749A /* sphereAnalytics.min.js */,
 			);
 			path = web;
 			sourceTree = "<group>";
@@ -222,11 +222,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43FDE0D924D2C08A0003C004 /* sphereAnalytics.js in Resources */,
 				43C7DA4B22D83291007FFAAC /* LaunchScreen.storyboard in Resources */,
 				43FDE0D724D2C08A0003C004 /* index.html in Resources */,
 				43C7DA4822D83291007FFAAC /* Assets.xcassets in Resources */,
 				43C7DA4622D83290007FFAAC /* Main.storyboard in Resources */,
+				43B285D82511C4D70065749A /* sphereAnalytics.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,11 +234,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43FDE0DA24D2C08A0003C004 /* sphereAnalytics.js in Resources */,
 				43C7DA6522D832AC007FFAAC /* LaunchScreen.storyboard in Resources */,
 				43FDE0D824D2C08A0003C004 /* index.html in Resources */,
 				43C7DA6222D832AC007FFAAC /* Assets.xcassets in Resources */,
 				43C7DA6022D832AC007FFAAC /* Main.storyboard in Resources */,
+				43B285D92511C4D70065749A /* sphereAnalytics.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

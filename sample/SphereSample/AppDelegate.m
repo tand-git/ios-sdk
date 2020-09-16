@@ -15,9 +15,6 @@
     // Sphere Analytics SDK 초기화
     [SPRAnalytics configureWithAppKey:@"Your Sphere SDK App Key"];
 
-    // Sphere In-App Message 활성화
-//    [SPRInAppMessage start];
-
     return YES;
 }
 
