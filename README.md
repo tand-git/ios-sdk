@@ -18,6 +18,7 @@
   * [로그 출력](#로그-출력)
   * [이벤트 즉시 전송](#이벤트-즉시-전송)
   * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
+  * [Sphere ID 확인](#Sphere-ID-확인)
 
 ## 기본 연동
 
@@ -397,4 +398,23 @@ Sphere Analytics의 이벤트 수집 기능을 비활성화하기를 원할 경�
 
 ```swift
 SphereAnalytics.setAnalyticsCollectionEnabled(false) // 비활성화
+```
+
+### Sphere ID 확인
+
+Sphere ID는 Sphere에서 기기를 식별하는 고유한 식별자로서 앱 설치 시 SDK 내부에서 항상 새롭게 생성이 되므로 삭제 후 재설치 시 새로운 Sphere ID가 생성이 됩니다.  
+Sphere ID를 확인하기 위해서는 `sphereId` 함수를 호출하여 SDK로부터 Sphere ID를 가져온 후 로그를 출력하여 확인할 수 있습니다.
+
+`<Objective-C>`
+
+```objectivec
+NSString *sphereId = [SPRAnalytics sphereId];
+NSLog(@"Sphere ID: %@", sphereId);
+```
+
+`<Swift>`
+
+```swift
+let sphereId = SphereAnalytics.sphereId()
+NSLog("Sphere ID: %@", sphereId)
 ```
