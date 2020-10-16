@@ -8,3 +8,4 @@
 #import <SphereSDK/SPRInAppMessage.h>
 #import <SphereSDK/SPRMessageDisplayDelegate.h>
 #import <SphereSDK/SPRMessageOpenLinkDelegate.h>
+#import <SphereSDK/SPRPushMessage.h>

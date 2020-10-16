@@ -49,11 +49,6 @@ NS_SWIFT_NAME(SphereAnalytics)
 
 + (void)resetUserProperties;
 
-+ (void)setFirebaseInstanceId:(NSString *)instanceId;
-
-+ (NSString *)setAPNSDeviceToken:(NSData *)deviceToken;
-+ (void)setAPNSDeviceTokenString:(NSString *)deviceTokenString;
-
 + (void)enableLog:(BOOL)enable;
 
 + (void)setSessionTimeoutInterval:(NSTimeInterval)timeout;
