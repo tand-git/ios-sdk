@@ -18,7 +18,7 @@
 
 
     // Add a script message handler for Sphere Analytics
-    [self.webView.configuration.userContentController addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:SPRScriptMessageHandler.handlerName];
 
 
     // Navigate to site
