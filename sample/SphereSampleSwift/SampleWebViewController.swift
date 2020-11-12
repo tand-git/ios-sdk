@@ -14,7 +14,7 @@ class SampleWebViewController: UIViewController {
 
 
         // Add a script message handler for Sphere Analytics
-        self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: SPRScriptMessageHandler.handlerName())
+        self.webView.configuration.userContentController.add(MyMessageHandler(), name: "TagJSInterface")
 
 
         // Navigate to site
@@ -26,4 +26,30 @@ class SampleWebViewController: UIViewController {
 //        self.webView.load(request)
     }
 
+}
+
+class MyMessageHandler: NSObject, WKScriptMessageHandler {
+
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        
+        if let body = message.body as? String {
+            postMessage(message: body)
+        }
+    }
+
+    func postMessage(message: String) {
+        if let dict = convertToDictionary(jsonString: message) {
+            if let name = dict["name"] as? String, name == SPRScriptMessageHandler.handlerName() {
+                // Sphere 메세지 핸들러 호출
+                SPRScriptMessageHandler.handlePostMessageBody(dict)
+            }
+        }
+    }
+
+    func convertToDictionary(jsonString: String) -> [String: Any]? {
+        if let data = jsonString.data(using: .utf8) {
+            return try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        }
+        return nil
+    }
 }
