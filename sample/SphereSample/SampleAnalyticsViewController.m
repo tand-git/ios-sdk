@@ -4,21 +4,16 @@
 
 @implementation SampleAnalyticsViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (IBAction)logEventClicked:(id)sender {
+    // 파라미터를 포함한 이벤트 기록
+    SPRParamBuilder *paramBuilder = [SPRParamBuilder builder];
+    [paramBuilder setParamWithString:@"param_value" forName:@"param_name_1"];
+    [paramBuilder setParamWithLong:1 forName:@"param_name_2"];
+    [paramBuilder setParamWithDouble:9.9 forName:@"param_name_3"];
+    [SPRAnalytics logEventWithName:@"event_name_1" paramBuilder:paramBuilder];
 
     // 파라미터가 없는 이벤트 기록
-    [SPRAnalytics logEventWithName:@"purchaseView" paramBuilder:nil];
-}
-
-- (IBAction)logEventClicked:(id)sender {
-    // 이벤트 파라미터 설정
-    SPRParamBuilder *paramBuilder = [SPRParamBuilder builder];
-    [paramBuilder setParamWithString:@"notebook" forName:@"item"];
-    [paramBuilder setParamWithLong:1 forName:@"quantity"];
-    [paramBuilder setParamWithDouble:9.9 forName:@"price"];
-    // 이벤트 기록
-    [SPRAnalytics logEventWithName:@"purchase" paramBuilder:paramBuilder];
+    [SPRAnalytics logEventWithName:@"event_name_2" paramBuilder:nil];
 }
 
 - (IBAction)userPropertyClicked:(id)sender {

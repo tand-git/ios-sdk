@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(SpherePushMessage)
 @interface SPRPushMessage : NSObject
 
-+ (void)setFirebaseInstanceId:(nullable NSString *)instanceId;
++ (void)setFcmToken:(nullable NSString *)token;
 
-+ (BOOL)isFirebaseInstanceIdInitialized;
++ (BOOL)hasFcmToken;
 
 + (NSString *)setAPNSDeviceToken:(nullable NSData *)deviceToken;
 + (void)setAPNSDeviceTokenString:(nullable NSString *)deviceTokenString;

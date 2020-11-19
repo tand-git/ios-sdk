@@ -81,8 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-    // Sphere Analytics SDK 초기화
-        SphereAnalytics.configure(appKey: "Your Sphere Analytics App Key");
+        // Sphere Analytics SDK 초기화
+        SphereAnalytics.configure(appKey: "Your Sphere Analytics App Key")
 
         return true
     }
@@ -140,36 +140,34 @@ SDK가 초기화 되었다면 `logEvent` 함수를 이용하여 커스텀 이벤
     * 첫 글자는 영문 대소문자만 허용
 
 3. 파라미터값
-    * 지원 타입 : NSString(최대 100자), int, long, float, double
+    * 지원 타입 : NSString(최대 100자), long, double
 
 `<Objective-C>`
 
 ```objectivec
-// 이벤트 파라미터 설정
+// 파라미터를 포함한 이벤트 기록
 SPRParamBuilder *paramBuilder = [SPRParamBuilder builder];
-[paramBuilder setParamWithString:@"notebook" forName:@"item"];
-[paramBuilder setParamWithLong:1 forName:@"quantity"];
-[paramBuilder setParamWithDouble:9.9 forName:@"price"];
-// 이벤트 기록
-[SPRAnalytics logEventWithName:@"purchase" paramBuilder:paramBuilder];
+[paramBuilder setParamWithString:@"param_value" forName:@"param_name_1"];
+[paramBuilder setParamWithLong:1 forName:@"param_name_2"];
+[paramBuilder setParamWithDouble:9.9 forName:@"param_name_3"];
+[SPRAnalytics logEventWithName:@"event_name_1" paramBuilder:paramBuilder];
 
 // 파라미터가 없는 이벤트 기록
-[SPRAnalytics logEventWithName:@"purchase_clicked" paramBuilder:nil];
+[SPRAnalytics logEventWithName:@"event_name_2" paramBuilder:nil];
 ```
 
 `<Swift>`
 
 ```swift
-// 이벤트 파라미터 설정
+// 파라미터를 포함한 이벤트 기록
 let paramBuilder = SPRParamBuilder()
-    .setStringParam("notebook", forName: "item")
-    .setLongParam(1, forName: "quantity")
-    .setDoubleParam(9.9, forName: "price")
-// 이벤트 기록
-SphereAnalytics.logEvent("purchase", paramBuilder: paramBuilder)
+    .setStringParam("param_value", forName: "param_name_1")
+    .setLongParam(1, forName: "param_name_2")
+    .setDoubleParam(9.9, forName: "param_name_3")
+SphereAnalytics.logEvent("event_name_1", paramBuilder: paramBuilder)
 
 // 파라미터가 없는 이벤트 기록
-SphereAnalytics.logEvent("purchase_clicked", paramBuilder: nil)
+SphereAnalytics.logEvent("event_name_2", paramBuilder: nil)
 ```
 
 ## 사용자 속성 사용하기

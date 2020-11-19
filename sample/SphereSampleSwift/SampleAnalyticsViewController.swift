@@ -3,25 +3,19 @@ import SphereSDK
 
 class SampleAnalyticsViewController: UITableViewController {
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @IBAction func logEventClicked(_ sender: Any) {
+        // 파라미터를 포함한 이벤트 기록
+        let paramBuilder = SPRParamBuilder()
+            .setStringParam("param_value", forName: "param_name_1")
+            .setLongParam(1, forName: "param_name_2")
+            .setDoubleParam(9.9, forName: "param_name_3")
+        SphereAnalytics.logEvent("event_name_1", paramBuilder: paramBuilder)
 
         // 파라미터가 없는 이벤트 기록
-        SphereAnalytics.logEvent("purchaseView", paramBuilder: nil)
-    }
-
-    @IBAction func logEventClicked(_ sender: Any) {
-        // 이벤트 파라미터 설정
-        let paramBuilder = SPRParamBuilder()
-            .setStringParam("notebook", forName: "item")
-            .setLongParam(1, forName: "quantity")
-            .setDoubleParam(9.9, forName: "price")
-        // 이벤트 기록
-        SphereAnalytics.logEvent("purchase", paramBuilder: paramBuilder)
+        SphereAnalytics.logEvent("event_name_2", paramBuilder: nil)
     }
 
     @IBAction func userPropertyClicked(_ sender: Any) {
-
         let isLogIn = true
 
         if (isLogIn) { // 로그인: ON 상태

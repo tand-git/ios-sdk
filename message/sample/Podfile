@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'MessageSample' do
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
+end
+
+target 'MessageSampleSwift' do
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
+end
+
+target 'NotificationServiceExt' do
+  pod 'Firebase/Messaging'
+end
+
+target 'NotificationServiceExtSwift' do
+  pod 'Firebase/Messaging'
+end
