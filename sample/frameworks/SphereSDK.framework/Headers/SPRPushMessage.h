@@ -26,6 +26,8 @@ NS_SWIFT_NAME(SpherePushMessage)
 
 + (void)agreePushMessageAtNight:(BOOL)agree;
 
++ (BOOL)handleNotificationResponseWithUserData:(NSDictionary *)userInfo;
+
 @end
 
 NS_ASSUME_NONNULL_END
