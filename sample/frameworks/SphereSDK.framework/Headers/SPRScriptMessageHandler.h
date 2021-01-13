@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)handlerName;
 
 + (BOOL)handlePostMessage:(WKScriptMessage *)message;
-+ (BOOL)handlePostMessageBody:(NSDictionary *)messageBody;
++ (BOOL)handlePostMessageBody:(id)messageBody;
 
 @end
 

@@ -12,7 +12,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SphereAnalytics.enableLog(true)
 
         // Sphere Analytics SDK 초기화
-        SphereAnalytics.configure(appKey: "Your Sphere SDK App Key")
+//        SphereAnalytics.configure(appKey: "Your Sphere SDK App Key")
+
+        SphereApp.setUserLevel("SphereDebugUser!@#$")
+        SphereAnalytics.configure(appKey: "qUY736F0lqUVUlC5L775kc")
 
         return true
     }
