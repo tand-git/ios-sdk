@@ -26,7 +26,14 @@ NS_SWIFT_NAME(SpherePushMessage)
 
 + (void)agreePushMessageAtNight:(BOOL)agree;
 
-+ (BOOL)handleNotificationResponseWithUserData:(NSDictionary *)userInfo;
++ (BOOL)isSphereNotificationResponse:(UNNotificationResponse *)response API_AVAILABLE(ios(10.0));
++ (BOOL)isSphereNotification:(UNNotification *)notification API_AVAILABLE(ios(10.0));
++ (BOOL)isSphereNotificationUserInfo:(NSDictionary *)userInfo;
+
++ (BOOL)handlePresentNotification:(UNNotification *)notification API_AVAILABLE(ios(10.0));
+
++ (BOOL)handleReceiveNotificationResponse:(UNNotificationResponse *)response API_AVAILABLE(ios(10.0));
++ (BOOL)handleReceiveNotificationUserInfo:(NSDictionary *)userInfo;
 
 @end
 
