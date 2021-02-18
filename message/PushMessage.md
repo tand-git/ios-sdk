@@ -195,7 +195,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
 ### APNs 디바이스 토큰 설정
 
-> 사용자의 언인스톨 정보를 집계하기 위해서는 APNs 디바이스 토큰 설정 연동이 필요합니다.
+> 사용자의 앱 삭제 정보를 집계하기 위해서는 APNs 디바이스 토큰 설정 연동 및 프로젝트 설정의 백그라운드 푸시 모드 활성화가 필요합니다.
 
 앱이 실행되고 Remote Notifcaion이 등록된 후 호출되는 `didRegisterForRemoteNotificationsWithDeviceToken`를 재정의하여 `deviceToken`을 Sphere SDK에 설정합니다.
 
@@ -226,6 +226,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 @end
 ```
+
+사용자의 앱 삭제 정보를 수집하기 위해서는 해당 디바이스로 백그라운드 푸시 메시지를 발송해야 하며, 이를 위해 아래 스크린샷과 같이 "프로젝트 설정 - Capability - Background Modes"를 추가한 후 "Remote notifications" 모드를 활성화 해야 합니다.
+
+![buildsettings](screenshot/screenshot_push_capability.png)
 
 ### 사용자 푸시 동의 설정
 
