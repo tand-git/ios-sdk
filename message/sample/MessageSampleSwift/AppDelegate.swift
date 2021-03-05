@@ -87,6 +87,13 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             // Sphere 푸시 메시지가 아닌 경우 처리
         }
 
+        // 푸시메시지 커스텀 데이터 전달 처리
+        let kYourPushLinkKey = "key_your_push_link"
+        let userInfo = response.notification.request.content.userInfo
+        if let link = userInfo[kYourPushLinkKey] {
+            // 링크 페이지로 이동
+        }
+
         completionHandler()
     }
 }
