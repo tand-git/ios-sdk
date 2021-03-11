@@ -36,6 +36,12 @@
     // Sphere SDK 초기화
     [SPRAnalytics configureWithAppKey:@"Your Sphere SDK App Key"];
 
+    // Sphere 푸시 메시지 데이터 처리
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo) {
+        [SPRPushMessage handleReceiveNotificationUserInfo:userInfo];
+    }
+
     return YES;
 }
 

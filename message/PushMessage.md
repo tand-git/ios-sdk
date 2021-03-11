@@ -95,6 +95,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 푸시 알림 리스너 등록 (UNUserNotificationCenterDelegate)
         UNUserNotificationCenter.current().delegate = self
 
+        // Sphere SDK 초기화
+        SphereAnalytics.configure(appKey: "Your Sphere SDK App Key")
+
+        // Sphere 푸시 메시지 데이터 처리
+        if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable:Any] {
+            SpherePushMessage.handleReceiveNotificationUserInfo(userInfo)
+        }
+
         return true
     }
 }
@@ -151,6 +159,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     // 푸시 알림 리스너 등록 (UNUserNotificationCenterDelegate)
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+
+    // Sphere SDK 초기화
+    [SPRAnalytics configureWithAppKey:@"Your Sphere SDK App Key"];
+
+    // Sphere 푸시 메시지 데이터 처리
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo) {
+        [SPRPushMessage handleReceiveNotificationUserInfo:userInfo];
+    }
 
     return YES;
 }

@@ -33,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sphere SDK 초기화
         SphereAnalytics.configure(appKey: "Your Sphere SDK App Key")
 
+        // Sphere 푸시 메시지 데이터 처리
+        if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable:Any] {
+            SpherePushMessage.handleReceiveNotificationUserInfo(userInfo)
+        }
+
         return true
     }
 
