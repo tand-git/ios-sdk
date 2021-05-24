@@ -47,6 +47,10 @@ NS_SWIFT_NAME(SphereAnalytics)
 
 + (void)setUserProperty:(nullable NSString *)value forName:(NSString *)name;
 
++ (void)setUserPropertyLong:(long)value forName:(NSString *)name;
+
++ (void)removeUserProperty:(NSString *)name;
+
 + (void)resetUserProperties;
 
 + (void)enableLog:(BOOL)enable;
