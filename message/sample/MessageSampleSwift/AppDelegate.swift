@@ -38,6 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SpherePushMessage.handleReceiveNotificationUserInfo(userInfo)
         }
 
+        // 푸시메시지 커스텀 데이터 전달 처리
+        let kYourPushLinkKey = "key_your_push_link"
+        if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable:Any] {
+            if let link = userInfo[kYourPushLinkKey] {
+                // 링크 페이지로 이동
+            }
+        }
+
         return true
     }
 
@@ -49,12 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate : MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        let dataDict:[String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
-
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        let dataDict:[String: String] = ["token": fcmToken ?? ""]
+          NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+          // TODO: If necessary send token to application server.
+          // Note: This callback is fired at each app startup and whenever a new token is generated.
 
         // Sphere SDK 푸시 토큰 설정
         SpherePushMessage.setFcmToken(fcmToken)

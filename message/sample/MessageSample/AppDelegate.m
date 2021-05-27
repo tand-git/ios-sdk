@@ -42,6 +42,13 @@
         [SPRPushMessage handleReceiveNotificationUserInfo:userInfo];
     }
 
+    // 푸시메시지 커스텀 데이터 전달 처리
+    NSString *yourPushLinkKey = @"key_your_push_link";
+    if (userInfo[yourPushLinkKey]) {
+        NSString *link = userInfo[yourPushLinkKey];
+        // 링크 페이지로 이동
+    }
+
     return YES;
 }
 

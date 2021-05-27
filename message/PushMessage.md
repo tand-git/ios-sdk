@@ -44,7 +44,7 @@ import SphereSDK
 import Firebase
 
 extension AppDelegate : MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 
         ...
 
@@ -283,6 +283,22 @@ SpherePushMessage.agree(atNight: true)
 `<Swift> - AppDelegate.swift`
 
 ```swift
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        // 푸시메시지 커스텀 데이터 전달 처리
+        let kYourPushLinkKey = "key_your_push_link"
+        if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable:Any] {
+            if let link = userInfo[kYourPushLinkKey] {
+                // 링크 페이지로 이동
+            }
+        }
+
+        return true
+    }
+}
+
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -303,6 +319,19 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 ```objectivec
 @implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    // 푸시메시지 커스텀 데이터 전달 처리
+    NSString *yourPushLinkKey = @"key_your_push_link";
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo[yourPushLinkKey]) {
+        NSString *link = userInfo[yourPushLinkKey];
+        // 링크 페이지로 이동
+    }
+
+    return YES;
+}
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
 didReceiveNotificationResponse:(UNNotificationResponse *)response
