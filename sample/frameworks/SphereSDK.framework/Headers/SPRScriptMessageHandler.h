@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SPRScriptMessageHandler : NSObject <WKScriptMessageHandler>
 
 + (NSString *)handlerName;
+- (instancetype)initWithWebView:(WKWebView *)webView;
 
 + (BOOL)handlePostMessage:(WKScriptMessage *)message;
 + (BOOL)handlePostMessageBody:(id)messageBody;

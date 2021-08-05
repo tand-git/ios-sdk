@@ -14,7 +14,7 @@ class SampleWebViewController: UIViewController {
 
 
         // Add a script message handler for Sphere Analytics
-        self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: "sphere")
+        self.webView.configuration.userContentController.add(SPRScriptMessageHandler(webView:webView), name: "sphere")
 
 
         // Navigate to site
