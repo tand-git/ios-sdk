@@ -105,14 +105,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ```objectivec
 // Add a script message handler for Sphere Analytics
-[self.webView.configuration.userContentController addScriptMessageHandler:[[SPRScriptMessageHandler alloc] init] name:@"sphere"];
+[self.webView.configuration.userContentController addScriptMessageHandler:[[SPRScriptMessageHandler alloc] initWithWebView:_webView] name:@"sphere"];
 ```
 
 `<Swift> - ViewController.swift`
 
 ```swift
 // Add a script message handler for Sphere Analytics
-self.webView.configuration.userContentController.add(SPRScriptMessageHandler(), name: "sphere")
+self.webView.configuration.userContentController.add(SPRScriptMessageHandler(webView:webView), name: "sphere")
 ```
 
 ### 자바스크립트 API
