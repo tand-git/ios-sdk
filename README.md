@@ -222,7 +222,7 @@ if (isLogIn) { // 로그인: ON 상태
 로그아웃 상태 시 다음과 같이 설정된 사용자 정보들을 초기화해야 합니다.
 
 1. 문자형(등급, 성별) 초기화 : `nil`로 설정
-2. 숫자형(보유 포인트) 초기화 : `resetPoints` 함수 호출
+2. 숫자형(보유 포인트) 초기화 : `removePoints` 함수 호출
 3. 숫자형(출생년도) 초기화 : `0`으로 설정
 
 `<Objective-C>`
@@ -249,7 +249,7 @@ if (isLogIn) { // 로그인: ON 상태
     [SPRAnalytics setUserId:nil];
 
     // 보유 포인트 초기화
-    [SPRAnalytics resetPoints];
+    [SPRAnalytics removePoints];
     // 등급 초기화
     [SPRAnalytics setGrade:nil];
     // 성별 초기화
@@ -283,7 +283,7 @@ if (isLogIn) { // 로그인: ON 상태
     SphereAnalytics.setUserId(nil)
 
     // 보유 포인트 초기화
-    SphereAnalytics.resetPoints()
+    SphereAnalytics.removePoints()
     // 등급 초기화
     SphereAnalytics.setGrade(nil)
     // 성별 초기화
