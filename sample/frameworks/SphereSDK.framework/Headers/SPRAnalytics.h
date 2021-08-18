@@ -37,12 +37,27 @@ NS_SWIFT_NAME(SphereAnalytics)
 
 + (void)setBirthYear:(int)year;
 
+/* 기본 포인트 사용*/
 + (void)setRemainingPoint:(int)point;
 
 + (void)setTotalEarnedPoint:(int)point;
 
 + (void)setTotalUsedPoint:(int)point;
 
++ (void)removePoints;
+
+/* 커스텀 포인트 사용
+ * - 기본포인트 함수를 사용하고있는 경우 assetName에 'point' 사용불가)
+ */
++ (void)setRemainingPoint:(int)point forAssetName:(NSString *)assetName;
+
++ (void)setTotalEarnedPoint:(int)point forAssetName:(NSString *)assetName;
+
++ (void)setTotalUsedPoint:(int)point forAssetName:(NSString *)assetName;
+
++ (void)removePoints:(NSString *)assetName;
+
+/* 전체 포인트 삭제 */
 + (void)resetPoints;
 
 + (void)setUserProperty:(nullable NSString *)value forName:(NSString *)name;
