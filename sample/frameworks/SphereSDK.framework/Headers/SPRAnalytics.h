@@ -22,6 +22,12 @@ NS_SWIFT_NAME(SphereAnalytics)
 
 + (void)printSphereId;
 
++ (NSString *)sphereAppKey;
+
++ (NSString *)sphereVersion;
+
++ (int)sphereVersionCode;
+
 + (void)logEventWithName:(NSString *)name
             paramBuilder:(nullable SPRParamBuilder *)builder NS_SWIFT_NAME(logEvent(_:paramBuilder:));
 
