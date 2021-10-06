@@ -30,8 +30,12 @@ Attribution ID 설정을 위해 Sphere SDK 초기화 이후 Attribution ID 설�
 
 - (void)updateAttributionId {
     // Adjust ID 설정
-    NSString *adjustId = Adjust.adid;
-    [SPRAttribution setAttributionId:adjustId forVendor:kVendorAdjust];
+    NSString *attributionId = Adjust.adid; //어트리뷰션 ID(업체에 따라 커스텀)
+    // 어트리뷰션 업체명 입력가이드
+    // Adjust : kVendorAdjust(상수값)
+    // kochava : kochava
+    [SPRAttribution setAttributionId:attributionId forVendor:kVendorAdjust];
+    //[SPRAttribution setAttributionId:attributionId forVendor:@"kochava"];
 }
 @end
 ```
@@ -57,8 +61,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate : SphereVendorCallback {
     func updateAttributionId() {
         // Adjust ID 설정
-        let adjustId = Adjust.adid()
-        SphereAttribution.setAttributionId(adjustId, forVendor: kVendorAdjust)
+        let attributionId = Adjust.adid()
+        // 어트리뷰션 업체명 입력가이드
+        // Adjust : kVendorAdjust(상수값)
+        // kochava : kochava
+        SphereAttribution.setAttributionId(attributionId, forVendor: kVendorAdjust)
+        //SphereAttribution.setAttributionId(attributionId, forVendor: "kochava")
     }
 }
 ```
