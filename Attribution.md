@@ -9,6 +9,8 @@ Attribution ID 설정을 위해 Sphere SDK 초기화 이후 Attribution ID 설�
 * Adjust iOS SDK 가이드: [Adjust Device Identifier](https://github.com/adjust/ios_sdk#adjust-device-identifier)
 * AppsFlyer iOS SDK 가이드: [Get AppsFlyer ID](https://support.appsflyer.com/hc/en-us/articles/207032066-iOS-SDK-V6-X-integration-guide-for-developers#additional-apis-get-appsflyer-id)
 
+* kochava iOS SDK 가이드: [Get Device ID](https://support.kochava.com/sdk-integration/ios-sdk-integration/ios-using-the-sdk/?scrollto=marker_13)
+
 `<Objective-C> - AppDelegate.m`
 
 ```objectivec
@@ -30,7 +32,8 @@ Attribution ID 설정을 위해 Sphere SDK 초기화 이후 Attribution ID 설�
 
 - (void)updateAttributionId {
     // Adjust ID 설정
-    NSString *attributionId = Adjust.adid; //어트리뷰션 ID(업체에 따라 커스텀)
+    NSString *attributionId = "업체별 ID값 입력"; //링크된 가이드 참조하여 작성
+
     // 어트리뷰션 업체명 입력가이드
     // Adjust : kVendorAdjust(상수값)
     // kochava : kochava
@@ -60,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate : SphereVendorCallback {
     func updateAttributionId() {
-        // Adjust ID 설정
-        let attributionId = Adjust.adid()
+        //링크된 가이드 참조하여 작성
+        let attributionId = "업체별 ID값 입력"; 
         // 어트리뷰션 업체명 입력가이드
         // Adjust : kVendorAdjust(상수값)
         // kochava : kochava
