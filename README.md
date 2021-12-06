@@ -439,4 +439,4 @@ NSLog("Sphere ID: %@", sphereId)
 
 ### 인앱메세지 설정
 
-인앱메세지는 WebSDK에서 설정으로 사용이 가능합니다.[WebSDK 인앱메세지 설정](https://github.com/tand-git/web-sdk#웹메세지-설정)
+인앱메세지는 WebSDK에서 설정으로 사용이 가능합니다.[WebSDK 인앱메세지 설정](https://github.com/tand-git/web-sdk#인앱메세지-설정)
