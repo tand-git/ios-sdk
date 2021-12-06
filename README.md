@@ -21,6 +21,8 @@
   * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
   * [Sphere ID 확인](#Sphere-ID-확인)
 * [PushMessage 연동](#pushmessage-연동)
+* [인앱메세지 설정](#인앱메세지-설정)
+
 ## 기본 연동
 
 > SDK 기본 연동은 이벤트 수집을 위한 필수 연동 사항이며 보다 정확한 이벤트 분석 및 트래킹을 위해서는 기본 연동에 포함된 가이드 중 해당되는 모든 항목들의 연동이 필요합니다.
@@ -434,3 +436,7 @@ NSLog("Sphere ID: %@", sphereId)
 ```
 ### PushMessage 연동
 >[iOS Sphere Push Message 연동 가이드](https://github.com/tand-git/ios-sdk/blob/master/message/PushMessage.md)
+
+### 인앱메세지 설정
+
+인앱메세지는 WebSDK에서 설정으로 사용이 가능합니다.[WebSDK 인앱메세지 설정](https://github.com/tand-git/web-sdk#웹메세지-설정)
