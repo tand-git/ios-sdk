@@ -253,15 +253,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 정보성, 광고성 푸시 발송 동의 설정은 필수 항목이며, 야간 푸시 발송은 미설정 시 동의 거부 상태로서 야간에 푸시 메시지가 발송되지 않습니다.
 
+> 야간 광고성 동의 설정: 야간 시간대(밤 9시 ~ 아침 8시)에 메세지를 발송 시 광고성 알림 동의와 별도로 야간 알림 동의를 받아야 합니다.
+
 `<Swift>`
 
 ```swift
 // 정보성 푸시 발송 동의 설정 (허용:true, 거부:false)
 SpherePushMessage.agree(forInformation: true)
 // 광고성 푸시 발송 동의 설정 (허용:true, 거부:false)
-SpherePushMessage.agree(forAdvertisement: true)
+SpherePushMessage.agree(forAdvertisement: false)
 // 야간 푸시 발송 동의 설정 (허용:true, 거부:false)
-SpherePushMessage.agree(atNight: true)
+SpherePushMessage.agree(atNight: false)
+
+ex)
+SpherePushMessage.agree(forInformation: false)
+SpherePushMessage.agree(forAdvertisement: false)
+// 야간 동의 설정이 있는 경우에만
+//SpherePushMessage.agree(atNight: false)
+if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
+
+    // 사용자 아이디 설정
+    SphereAnalytics.setUserId("[USER ID]")
+    ...
+    // 사용자 동의정보 설정
+    SpherePushMessage.agree(forInformation: true)
+    SpherePushMessage.agree(forAdvertisement: ["동의설정값"])
+    // 야간 동의 설정이 있는 경우에만
+    //SpherePushMessage.agree(atNight: ["동의설정값"])
+} else { // 로그아웃: OFF 상태
+
+    // 사용자 아이디 초기화
+    SphereAnalytics.setUserId(nil)
+    ...
+    // 비회원 동의정보 설정
+    SpherePushMessage.agree(forInformation: true)
+    SpherePushMessage.agree(forAdvertisement: ["동의설정값"])
+    // 야간 동의 설정이 있는 경우에만
+    //SpherePushMessage.agree(atNight: ["동의설정값"])
+
+}
+
 ```
 
 `<Objective-C>`
@@ -270,14 +301,40 @@ SpherePushMessage.agree(atNight: true)
 // 정보성 푸시 발송 동의 설정 (허용:true, 거부:false)
 [SPRPushMessage agreePushMessageForInformation:true];
 // 광고성 푸시 발송 동의 설정 (허용:true, 거부:false)
-[SPRPushMessage agreePushMessageForAdvertisement:true];
+[SPRPushMessage agreePushMessageForAdvertisement:false];
 // 야간 푸시 발송 동의 설정 (허용:true, 거부:false)
-[SPRPushMessage agreePushMessageAtNight:true];
+[SPRPushMessage agreePushMessageAtNight:false];
+
+ex)
+[SPRPushMessage agreePushMessageForInformation:false];
+[SPRPushMessage agreePushMessageForAdvertisement:false];
+// 야간 동의 설정이 있는 경우에만
+//[SPRPushMessage agreePushMessageAtNight:false]; 
+if (isLogIn) { // 로그인: ON 상태
+
+    // 사용자 아이디 설정
+    [SPRAnalytics setUserId:@"[USER ID]"];
+    ...
+    [SPRPushMessage agreePushMessageForInformation:true];
+    [SPRPushMessage agreePushMessageForAdvertisement:["동의설정값"]];
+    // 야간 동의 설정이 있는 경우에만 true|false 설정 
+    //[SPRPushMessage agreePushMessageAtNight:["동의설정값"]]; 
+} else { // 로그아웃: OFF 상태
+
+    // 사용자 아이디 초기화
+    [SPRAnalytics setUserId:nil];
+    ...
+    [SPRPushMessage agreePushMessageForInformation:true];
+    [SPRPushMessage agreePushMessageForAdvertisement:["동의설정값"]];
+    // 야간 동의 설정이 있는 경우에만 true|false 설정 
+    //[SPRPushMessage agreePushMessageAtNight:["동의설정값"]];
+}
 ```
 
 ## 푸시메시지 데이터 전달
 
-> 푸시 메시지 전송 시 데이터(키/값)를 함께 전달하기 위해서는 [키-값 이용 가이드](https://www.notion.so/Key-value-c65b4843b7cd4b6e80e91ad994af52b2)를 참고하여 Sphere 콘솔에서 푸시메시지 입력 시 키/값을 설정해야 합니다.
+> 푸시 메시지 전송 시 데이터(키/값)를 함께 전달하는 기능으로 Sphere 콘솔에서 푸시메시지 입력 시 키/값을 설정해야 합니다.
+* 키-값(key-value) 이용가이드: [링크](https://www.notion.so/Key-value-c65b4843b7cd4b6e80e91ad994af52b2)
 
 데이터(키/값)와 함께 푸시메시지를 전송하면 메시지 클릭 시 실행되는 `AppDelegate`로 데이터가 전달됩니다.  
 만약 링크를 통해 앱 내 특정 페이지로 이동할 경우 링크에 해당하는 키/값이 `AppDelegate`로 전달되면 해당 링크를 확인하여 링크 페이지로 이동하는 코드를 구현해야 합니다.
