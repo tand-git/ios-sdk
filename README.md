@@ -375,13 +375,13 @@ SphereAnalytics.setUserPropertyLong(1234, forName: "user_property_name_2")
 SphereAnalytics.removeUserProperty("user_property_name_1")
 SphereAnalytics.removeUserProperty("user_property_name_2")
 
-// 배열 속성 설정 :SDK v1.2.10 이상
+// 배열 속성 설정 : SDK v1.2.10 이상
 // NSArray *arrProp = ["prop1","prop2","prop3"]; // 사용가능
 var arrProp = Array<String>()
 arrProp.append("prop1")
 SphereAnalytics.setUserPropertyArray(arrProp, forName: "user_property_arr")
 
-// 배열속성 초기화 : SDK v1.2.10 이상
+// 배열 속성 초기화 : SDK v1.2.10 이상
 SphereAnalytics.setUserPropertyArray(nil, forName: "user_property_arr")
 ```
 
