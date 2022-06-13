@@ -359,10 +359,10 @@ if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
 // NSArray *arrProp = [NSArray arrayWithObjects:@"prop1", @"prop2", @"prop3", nil]; // 사용가능
 NSMutableArray* arrProp = [[NSMutableArray alloc] init];
 [arrProp addObject:@"prop1"];
-[SPRAnalytics setUserPropertyArray:arrProp forName:@"속성명"];
+[SPRAnalytics setUserPropertyArray:arrProp forName:@"user_property_arr"];
     
 // 배열속성 초기화 : SDK v1.2.10 이상
-[SPRAnalytics setUserPropertyArray:nil forName:@"속성명"];
+[SPRAnalytics setUserPropertyArray:nil forName:@"user_property_arr"];
 ```
 
 `<Swift>`
@@ -382,7 +382,7 @@ arrProp.append("prop1")
 SphereAnalytics.setUserPropertyArray(arrProp, forName: "user_property_arr")
 
 // 배열속성 초기화 : SDK v1.2.10 이상
-SphereAnalytics.setUserPropertyArray(nil, forName: "속성명")
+SphereAnalytics.setUserPropertyArray(nil, forName: "user_property_arr")
 ```
 
 ### 커스텀 사용자 포인트 설정
