@@ -250,6 +250,8 @@ if (isLogIn) { // 로그인: ON 상태
 1. 문자형(등급, 성별) 초기화 : `nil`로 설정
 2. 숫자형(보유 포인트) 초기화 : `removePoints` 함수 호출
 3. 숫자형(출생년도) 초기화 : `0`으로 설정
+* SDK v1.2.10 이상 :
+4. 사용자 배열속성 :  NSMutableArray(String) 추가지원
 
 `<Objective-C>`
 
@@ -264,10 +266,16 @@ if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
     // 등급 설정
     [SPRAnalytics setGrade:@"vip"];
     // 성별 설정
-    [SPRAnalytics setGender:@"m"]; // 남성일 경우: "m"
-//    [SPRAnalytics setGender:@"f"]; // 여성일 경우: "f"
+    [SPRAnalytics setGender:@"m"]; // 남성: "m", 여성: "f"
     // 출생년도 설정
-    [SPRAnalytics setBirthYear:1995]; // 출생년도
+    [SPRAnalytics setBirthYear:1995];
+
+    // 배열속성 : SDK v1.2.10 이상
+    // NSArray *arrProp = [NSArray arrayWithObjects:@"prop1", @"prop2", @"prop3", nil]; // 사용가능
+    NSMutableArray* arrProp = [[NSMutableArray alloc] init];
+    [arrProp addObject:@"prop1"];
+    [SPRAnalytics setUserPropertyArray:arrProp forName:@"속성명"];
+    
 
 } else { // 로그아웃: OFF 상태
 
@@ -282,6 +290,9 @@ if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
     [SPRAnalytics setGender:nil];
     // 출생년도 초기화
     [SPRAnalytics setBirthYear:0];
+    
+    // 배열속성 초기화 : SDK v1.2.10 이상
+    [SPRAnalytics setUserPropertyArray:nil forName:@"속성명"];
 }
 ```
 
@@ -298,10 +309,16 @@ if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
     // 등급 설정
     SphereAnalytics.setGrade("vip")
     // 성별 설정
-    SphereAnalytics.setGender("m") // 남성일 경우: "m"
-//    SphereAnalytics.setGender("f") // 여성일 경우: "f"
+    SphereAnalytics.setGender("m") // 남성: "m", 여성: "f"
+
     // 출생년도 설정
     SphereAnalytics.setBirthYear(1995) // 출생년도
+
+    // 파라미터 NSMutableArray: SDK v1.2.10 이상
+    // NSArray *arrProp = ["prop1","prop2","prop3"]; // 사용가능
+    var arrProp = Array<String>()
+    arrProp.append("name1")
+    SphereAnalytics.setUserPropertyArray(arrProp, forName: "속성명")
 
 } else { // 로그아웃: OFF 상태
 
@@ -316,6 +333,9 @@ if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
     SphereAnalytics.setGender(nil)
     // 출생년도 초기화
     SphereAnalytics.setBirthYear(0)
+
+    // 배열속성 초기화 : SDK v1.2.10 이상
+     SphereAnalytics.setUserPropertyArray(nil, forName: "속성명")
 }
 ```
 
