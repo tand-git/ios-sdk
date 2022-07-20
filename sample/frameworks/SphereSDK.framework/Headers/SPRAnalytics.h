@@ -70,6 +70,8 @@ NS_SWIFT_NAME(SphereAnalytics)
 
 + (void)setUserPropertyLong:(long)value forName:(NSString *)name;
 
++ (void)setUserPropertyArray:(nullable NSArray *)value forName:(NSString *)name;
+
 + (void)removeUserProperty:(NSString *)name;
 
 + (void)resetUserProperties;
@@ -87,6 +89,8 @@ NS_SWIFT_NAME(SphereAnalytics)
 + (void)handleOpenUrl:(nullable NSURL *)url;
 
 + (void)handleContinueUserActivity:(nullable NSUserActivity *)userActivity;
+
++ (NSString *)getPropertyWithString:(NSString *)name ;
 
 @end
 
