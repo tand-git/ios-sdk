@@ -104,8 +104,7 @@ func getTrackingAllowPopup() {
 }
 
 ```
-*  firebase - 앱 추적 투명성(App Tracking Transparency) 승인 요청 가이드 :
-   https://developers.google.com/admob/ios/ios14?hl=ko#request
+*  firebase - 앱 추적 투명성(App Tracking Transparency) 승인 요청 가이드 : [링크](https://developers.google.com/admob/ios/ios14?hl=ko#request)
 
 ### SDK 초기화하기
 

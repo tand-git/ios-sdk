@@ -104,8 +104,7 @@ SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이�
 >    }
 > }
 > ```
-> *  firebase - 앱 추적 투명성(App Tracking Transparency) 승인 요청 가이드 :
-     >   https://developers.google.com/admob/ios/ios14?hl=ko#request
+> *  firebase - 앱 추적 투명성(App Tracking Transparency) 승인 요청 가이드 : [링크](https://developers.google.com/admob/ios/ios14?hl=ko#request)
 
 ### SDK 초기화하기
 
