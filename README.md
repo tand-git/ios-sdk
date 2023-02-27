@@ -1,25 +1,25 @@
 # Sphere iOS SDK
 
 * [기본 연동](#기본-연동)
-  * [Sphere Analytics 시작하기](#sphere-analytics-시작하기)
-  * [샘플 소스 및 연동 검증 가이드](#샘플-소스-및-연동-검증-가이드)
-  * [SDK 다운로드](#sdk-다운로드)
-  * [Xcode 프로젝트 설정](#xcode-프로젝트-설정)
-  * [SDK 초기화하기](#sdk-초기화하기)
+    * [Sphere Analytics 시작하기](#sphere-analytics-시작하기)
+    * [샘플 소스 및 연동 검증 가이드](#샘플-소스-및-연동-검증-가이드)
+    * [SDK 다운로드](#sdk-다운로드)
+    * [Xcode 프로젝트 설정](#xcode-프로젝트-설정)
+    * [SDK 초기화하기](#sdk-초기화하기)
 * [웹뷰 연동](#웹뷰-연동)
-  * [웹뷰 자바스크립트 메세지 핸들러 등록](#웹뷰-자바스크립트-메세지-핸들러-등록)
-  * [웹뷰 WebSDK 이용하기](#웹뷰-WebSDK-이용하기)
+    * [웹뷰 자바스크립트 메세지 핸들러 등록](#웹뷰-자바스크립트-메세지-핸들러-등록)
+    * [웹뷰 WebSDK 이용하기](#웹뷰-WebSDK-이용하기)
 * [이벤트 연동하기](#이벤트-연동하기)
 * [사용자 속성 연동하기](#사용자-속성-연동하기)
-  * [사용자 아이디 설정](#사용자-아이디-설정)
-  * [사용자 정보 설정](#사용자-정보-설정)
-  * [커스텀 사용자 속성 설정](#커스텀-사용자-속성-설정)
-  * [커스텀 사용자 포인트 설정](#커스텀-사용자-포인트-설정)
+    * [사용자 아이디 설정](#사용자-아이디-설정)
+    * [사용자 속성 설정](#사용자-속성-설정)
+    * [커스텀 사용자 속성 설정](#커스텀-사용자-속성-설정)
+    * [커스텀 사용자 포인트 설정](#커스텀-사용자-포인트-설정)
 * [추가 설정](#추가-설정)
-  * [로그 출력](#로그-출력)
-  * [이벤트 즉시 전송](#이벤트-즉시-전송)
-  * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
-  * [Sphere ID 확인](#Sphere-ID-확인)
+    * [로그 출력](#로그-출력)
+    * [이벤트 즉시 전송](#이벤트-즉시-전송)
+    * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
+    * [Sphere ID 확인](#Sphere-ID-확인)
 * [PushMessage 연동](#pushmessage-연동)
 * [인앱메세지 설정](#인앱메세지-설정)
 
@@ -35,21 +35,77 @@ Sphere Analytics 사용을 위해서는 기본적으로 앱키(App key)가 필�
 ### 샘플 소스 및 연동 검증 가이드
 
 * [SDK 샘플 소스](sample) : 최신 버전의 Sphere SDK가 연동된 샘플 소스를 확인할 수 있습니다.
-* [SDK 연동 검증 가이드](https://github.com/tand-git/sphere-sdk/blob/master/guide/SDK_Inspection.md) : 기본 연동이 완료되었다면 SDK 연동 검증 가이드에 따라 SDK 동작 상태를 확인할 수 있습니다.
+* [SDK 연동 검증 가이드(스피어 대시보드)](https://lightning-individual-9c1.notion.site/0ad122054a0d44e59166a90a3c48e8e2) : 기본 연동이 완료되었다면, 이후 스피어 대시보드에서 태깅된 내용을 확인할 수 있습니다.
+* [SDK 연동 로그 확인](#로그-출력) : 기본 연동이 완료되었다면, 로그레벨을 설정하여 SDK 동작 상태를 확인할 수 있습니다.
 
 ### SDK 다운로드
 
 SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이지](https://github.com/tand-git/ios-sdk/releases)를 방문하면 현재까지 릴리즈된 SDK 버전들을 확인할 수 있으며 가장 최신 버전의 SDK 파일(SphereSDK.framework.zip)을 선택하여 다운로드 후 압축을 해제합니다.
 
 ### Xcode 프로젝트 설정
-
+#### iOS SDK 설치하기
 1. 프로젝트 폴더 내에 Sphere SDK framework 파일(.framework)을 복사합니다.
 2. 해당 프로젝트 내에 framework 파일을 추가합니다. (Add Files to ...)
 3. '프로젝트 설정 > General > Linked Frameworks and Libraries' 에서 'SphereSDK.framework'가 추가되었는지 확인 후
-만약 추가되지 않은 경우 'Linked Frameworks and Libraries > 추가(+) > Add Other...'를 통해 'SphereSDK.framework'를 추가합니다.
-![linked_frameworks](screenshot/screenshot_linkedframeworks.png)
+   만약 추가되지 않은 경우 'Linked Frameworks and Libraries > 추가(+) > Add Other...'를 통해 'SphereSDK.framework'를 추가합니다.
+   ![linked_frameworks](screenshot/screenshot_linkedframeworks.png)
 4. '프로젝트 설정 > General > BuildSettings > Linking > Other Linker Flags' 설정에 '-ObjC'를 추가합니다.  
-![buildsettings](screenshot/screenshot_buildsettings.png)
+   ![buildsettings](screenshot/screenshot_buildsettings.png)
+#### Dependency framework 설치하기
+1. '프로젝트 설정 > General > Linked Frameworks and Libraries, and Embedded Content'에서 표의 framework목록 중 미설치된 항목을 추가합니다.
+
+|제목| 내용             |
+|------|----------------|
+|AdSupport.framework| IDFA 를 수집      |
+|CoreTelephony.framework| 통신사 정보를 수집     |
+|AppTrackingTransparency.framework| 추적 허용 상태정보를 수집 |
+
+#### 앱 추적 투명성 허가(App Tracking Transparency) 받기
+>* ‘iOS 14.5, iPadOS 14.5 및 tvOS 14.5 이후 버전에서는 타사 소유의 앱과 웹 사이트 전반에서 사용자를 추적하려면 앱에서 사용자에게 허가를 받아야 합니다. Sphere Analytics에서는 IDFA를 분석, 검증(테스트), 액션에 활용합니다.’
+1.  IDFA에 액세스하기 위한 앱 추적 투명성 승인 요청을 표시하려면 Info.plist를 업데이트하여 사용을 설명하는 맞춤 메시지와 함께 NSUserTrackingUsageDescription 키를 추가합니다
+```
+[텍스트는 예시이며, 변경하여 사용을 권장합니다]
+<key>NSUserTrackingUsageDescription</key>
+<string>App would like to access IDFA for tracking purpose.[텍스트는 예시이며, 변경하여 사용을 권장]</string>
+```
+![buildsettings](screenshot/screenshot_privacy_description.png)
+
+2. 사용자 추적허용 팝업표기
+* 아래의 코드는 예시이며, ATTrackingManager.requestTrackingAuthorization 코드의 실행을 위함입니다.
+* 권한 허용 팝업을 띄우고자 하는 시점에 호출합니다.
+
+
+`<Swift>`
+```swift
+import AppTrackingTransparency
+import AdSupport
+...
+func getTrackingAllowPopup() {
+    if #available(iOS 14, *) {
+        ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+            // 추적이 허용이 되면. 이 부분에서 IDFA 값을 확인 가능합니다.
+            // let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        })
+    }
+}
+```
+`<Objective-C>`
+```objectivec
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
+#import <AdSupport/AdSupport.h>
+...
+- (void)getTrackingAllowPopup {
+    if (@available(iOS 14, *)) {
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            // 추적이 허용이 되면. 이 부분에서 IDFA 값을 확인 가능합니다.
+            // NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+      }];
+    }
+}
+
+```
+*  firebase - 앱 추적 투명성(App Tracking Transparency) 승인 요청 가이드 :
+   https://developers.google.com/admob/ios/ios14?hl=ko#request
 
 ### SDK 초기화하기
 
@@ -129,7 +185,7 @@ Web SDK를 이용하기 위해서는 [Sphere Web SDK 연동 가이드](https://g
 
 > 이벤트는 가장 기본이 되는 수집 정보이며 이벤트는 이벤트명과 파라미터들로 구성이 됩니다.
 
-> 이벤트 연동 검증 방법 : [링크](https://lightning-individual-9c1.notion.site/ed4a7dd092d6446e8be56e73648637a2)
+> 이벤트 연동 검증 방법 : [SDK 연동 검증 가이드](https://lightning-individual-9c1.notion.site/0ad122054a0d44e59166a90a3c48e8e2) | [로그 출력](#로그-출력)
 
 SDK가 초기화 되었다면 `logEvent` 함수를 이용하여 이벤트를 연동할 수 있으며, 한 이벤트는 최대 25개의 파라미터를 설정할 수 있습니다.
 파라미터는 파라미터명과 파라미터값의 쌍으로 구성되며 `SPRParamBuilder` 클래스를 통해 설정이 가능합니다.
@@ -138,21 +194,21 @@ SDK가 초기화 되었다면 `logEvent` 함수를 이용하여 이벤트를 연
 이벤트명은 필수이며 파라미터는 없는 경우 `nil`로 설정 가능합니다. 이벤트명과 파라미터에 관한 규칙은 다음과 같습니다.
 
 1. 이벤트명
-    * 최대 40자  
-    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용  
+    * 최대 40자
+    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용
     * 첫 글자는 영문 대소문자만 허용
 
 2. 파라미터명
-    * 최대 40자  
-    * 영문 대소문자, 숫자, 특수 문자 중 ‘_’ 만 허용  
+    * 최대 40자
+    * 영문 대소문자, 숫자, 특수 문자 중 ‘_’ 만 허용
     * 첫 글자는 영문 대소문자만 허용
 
 3. 파라미터값
-    * 지원 타입 : NSString(최대 100자), long, double, 
+    * 지원 타입 : NSString(최대 100자), long, double,
     * SDK v1.2.10 이상 : NSMutableArray(String) 추가지원
 
 
-    
+
 
 `<Objective-C>`
 
@@ -202,15 +258,15 @@ SphereAnalytics.logEvent("event_name_2", paramBuilder: nil)
 
 사용자 속성 연동 시 고려해야 할 사항은 다음과 같으며 해당되는 모든 시점에 사용자 속성들을 설정해야 정확한 분석이 가능합니다.
 
-1. (필수) 실행 후 현재 로그인 여부를 알 수 있는 가장 빠른 시점에 로그온 또는 로그오프 상태에 따라 사용자 아이디 및 사용자 정보를 설정 또는 초기화
-2. 로그인 또는 로그아웃 상태 변경 시 해당 상태에 따라 해당 사용자 아이디 및 사용자 정보를 설정 또는 초기화
+1. (필수) 실행 후 현재 로그인 여부를 알 수 있는 가장 빠른 시점에 로그온 또는 로그오프 상태에 따라 사용자 아이디 및 사용자 속성을 설정 또는 초기화
+2. 로그인 또는 로그아웃 상태 변경 시 해당 상태에 따라 해당 사용자 아이디 및 사용자 속성을 설정 또는 초기화
 
 ### 사용자 아이디 설정
 
 사용자 아이디는 고객이 고객사의 서비스에 로그인할 때 사용되는 아이디가 아니라, 고객사의 시스템에서 사용자를 관리하는 고유한 식별값을 의미합니다.
 고유한 사용자를 구분하기 위한 사용자 아이디로서 설정 여부에 따라 로그인 여부를 판단합니다.  
 해당 정보는 유저를 구분하기 위한 용도로만 사용되므로 사용자를 식별하는 고유한 (Unique) 어떠한 식별 아이디도 사용 가능합니다.  
-사용자 아이디는 최대 256자까지 설정가능하고 `nil`로 설정 시 사용자 아이디 정보는 초기화되고 로그아웃 상태로 설정됩니다.  
+사용자 아이디는 최대 256자까지 설정가능하고 `nil`로 설정 시 사용자 아이디 정보는 초기화되고 로그아웃 상태로 설정됩니다.
 
 `<Objective-C>`
 
@@ -242,10 +298,10 @@ if (isLogIn) { // 로그인: ON 상태
 }
 ```
 
-### 사용자 정보 설정
+### 사용자 속성 설정
 
-추가적인 사용자 정보(보유 포인트, 등급, 성별, 출생년도)를 설정합니다.  
-로그아웃 상태 시 다음과 같이 설정된 사용자 정보들을 초기화해야 합니다.
+추가적인 사용자 속성(보유 포인트, 등급, 성별, 출생년도)를 설정합니다.  
+로그아웃 상태 시 다음과 같이 설정된 사용자 속성들을 초기화해야 합니다.
 
 1. 문자형(등급, 성별) 초기화 : `nil`로 설정
 2. 숫자형(보유 포인트) 초기화 : `removePoints` 함수 호출
@@ -255,7 +311,7 @@ if (isLogIn) { // 로그인: ON 상태
 `<Objective-C>`
 
 ```objectivec
-if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
+if (isLogIn) { // 로그인: ON 상태 및 사용자 속성 변경 시 설정
 
     // 사용자 아이디 설정
     [SPRAnalytics setUserId:@"[USER ID]"];
@@ -291,7 +347,7 @@ if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
 `<Swift>`
 
 ```swift
-if (isLogIn) { // 로그인: ON 상태 및 사용자 정보 변경 시 설정
+if (isLogIn) { // 로그인: ON 상태 및 사용자 속성 변경 시 설정
 
     // 사용자 아이디 설정
     SphereAnalytics.setUserId("[USER ID]")
@@ -416,8 +472,8 @@ SphereAnalytics.resetPoints();
 
 ### 로그 출력
 
-로그 출력 함수를 활성화 하면 세션의 시작과 종료 및 이벤트 기록 로그와 에러 로그들을 확인할 수 있습니다.  
-기본 설정은 비활성화 상태이며 출력되는 로그들은 [SDK 로그를 통한 검증](#sdk-로그를-통한-검증)에서 확인 가능합니다.
+> 로그 출력 함수를 활성화 하면 세션의 시작과 종료 및 이벤트 기록 로그와 에러 로그들을 확인할 수 있습니다.  
+> 기본 설정은 비활성화 상태이며, 서버로 전송된 데이터 확인은 [SDK 연동 검증 가이드(스피어 대시보드)](https://lightning-individual-9c1.notion.site/0ad122054a0d44e59166a90a3c48e8e2)를 참조바랍니다.
 
 `<Objective-C>`
 
