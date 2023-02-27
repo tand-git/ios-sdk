@@ -1,25 +1,25 @@
 # Sphere iOS SDK
 
 * [기본 연동](#기본-연동)
-    * [Sphere Analytics 시작하기](#sphere-analytics-시작하기)
-    * [샘플 소스 및 연동 검증 가이드](#샘플-소스-및-연동-검증-가이드)
-    * [SDK 다운로드](#sdk-다운로드)
-    * [Xcode 프로젝트 설정](#xcode-프로젝트-설정)
-    * [SDK 초기화하기](#sdk-초기화하기)
+  * [Sphere Analytics 시작하기](#sphere-analytics-시작하기)
+  * [샘플 소스 및 연동 검증 가이드](#샘플-소스-및-연동-검증-가이드)
+  * [SDK 다운로드](#sdk-다운로드)
+  * [Xcode 프로젝트 설정](#xcode-프로젝트-설정)
+  * [SDK 초기화하기](#sdk-초기화하기)
 * [웹뷰 연동](#웹뷰-연동)
-    * [웹뷰 자바스크립트 메세지 핸들러 등록](#웹뷰-자바스크립트-메세지-핸들러-등록)
-    * [웹뷰 WebSDK 이용하기](#웹뷰-WebSDK-이용하기)
+  * [웹뷰 자바스크립트 메세지 핸들러 등록](#웹뷰-자바스크립트-메세지-핸들러-등록)
+  * [웹뷰 WebSDK 이용하기](#웹뷰-WebSDK-이용하기)
 * [이벤트 연동하기](#이벤트-연동하기)
 * [사용자 속성 연동하기](#사용자-속성-연동하기)
-    * [사용자 아이디 설정](#사용자-아이디-설정)
-    * [사용자 속성 설정](#사용자-속성-설정)
-    * [커스텀 사용자 속성 설정](#커스텀-사용자-속성-설정)
-    * [커스텀 사용자 포인트 설정](#커스텀-사용자-포인트-설정)
+  * [사용자 아이디 설정](#사용자-아이디-설정)
+  * [사용자 속성 설정](#사용자-속성-설정)
+  * [커스텀 사용자 속성 설정](#커스텀-사용자-속성-설정)
+  * [커스텀 사용자 포인트 설정](#커스텀-사용자-포인트-설정)
 * [추가 설정](#추가-설정)
-    * [로그 출력](#로그-출력)
-    * [이벤트 즉시 전송](#이벤트-즉시-전송)
-    * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
-    * [Sphere ID 확인](#Sphere-ID-확인)
+  * [로그 출력](#로그-출력)
+  * [이벤트 즉시 전송](#이벤트-즉시-전송)
+  * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
+  * [Sphere ID 확인](#Sphere-ID-확인)
 * [PushMessage 연동](#pushmessage-연동)
 * [인앱메세지 설정](#인앱메세지-설정)
 
@@ -43,69 +43,69 @@ Sphere Analytics 사용을 위해서는 기본적으로 앱키(App key)가 필�
 SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이지](https://github.com/tand-git/ios-sdk/releases)를 방문하면 현재까지 릴리즈된 SDK 버전들을 확인할 수 있으며 가장 최신 버전의 SDK 파일(SphereSDK.framework.zip)을 선택하여 다운로드 후 압축을 해제합니다.
 
 ### Xcode 프로젝트 설정
->> #### iOS SDK 설치하기
-> 1. 프로젝트 폴더 내에 Sphere SDK framework 파일(.framework)을 복사합니다.
-> 2. 해당 프로젝트 내에 framework 파일을 추가합니다. (Add Files to ...)
-> 3. '프로젝트 설정 > General > Linked Frameworks and Libraries' 에서 'SphereSDK.framework'가 추가되었는지 확인 후
-   만약 추가되지 않은 경우 'Linked Frameworks and Libraries > 추가(+) > Add Other...'를 통해 'SphereSDK.framework'를 추가합니다.
-   ![linked_frameworks](screenshot/screenshot_linkedframeworks.png)
-> 4. '프로젝트 설정 > General > BuildSettings > Linking > Other Linker Flags' 설정에 '-ObjC'를 추가합니다.  
-   ![buildsettings](screenshot/screenshot_buildsettings.png)
->
-> >#### Dependency framework 설치하기
-> 1. '프로젝트 설정 > General > Linked Frameworks and Libraries, and Embedded Content'에서 표의 framework목록 중 미설치된 항목을 추가합니다.
-> 
-> |제목|내용|
-> |---|-----|
-> |AdSupport.framework| IDFA 를 수집|
-> |CoreTelephony.framework| 통신사 정보를 수집|
-> |AppTrackingTransparency.framework| 추적 허용 상태정보를 수집|
->
->>#### 앱 추적 투명성 허가(App Tracking Transparency) 받기
-> * ‘iOS 14.5, iPadOS 14.5 및 tvOS 14.5 이후 버전에서는 타사 소유의 앱과 웹 사이트 전반에서 사용자를 추적하려면 앱에서 사용자에게 허가를 받아야 합니다. Sphere Analytics에서는 IDFA를 분석, 검증(테스트), 액션에 활용합니다.’
-> 1.  IDFA에 액세스하기 위한 앱 추적 투명성 승인 요청을 표시하려면 Info.plist를 업데이트하여 사용을 설명하는 맞춤 메시지와 함께 NSUserTrackingUsageDescription 키를 추가합니다
->
->  `<Info.plist>`
-> ```
->[텍스트는 예시이며, 변경하여 사용을 권장합니다]
-><key>NSUserTrackingUsageDescription</key>
-><string>App would like to access IDFA for tracking purpose.[텍스트는 예시이며, 변경하여 사용을 권장]</string>
->```
->![buildsettings](screenshot/screenshot_privacy_description.png)
-> 2. 사용자 추적허용 팝업표기
-> * 아래의 코드는 예시이며, ATTrackingManager.requestTrackingAuthorization 코드의 실행을 위함입니다.
-> * 권한 허용 팝업을 띄우고자 하는 시점에 호출합니다.
-> 
-> `<Swift>`
-> ```swift
-> import AppTrackingTransparency
-> import AdSupport
-> ...
-> func getTrackingAllowPopup() {
->    if #available(iOS 14, *) {
->        ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
->            // 추적이 허용이 되면. 이 부분에서 IDFA 값을 확인 가능합니다.
->            // let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
->        })
->    }
->}
->```
-> `<Objective-C>`
-> ```objectivec
-> #import <AppTrackingTransparency/AppTrackingTransparency.h>
-> #import <AdSupport/AdSupport.h>
-> ...
-> - (void)getTrackingAllowPopup {
->    if (@available(iOS 14, *)) {
->        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
->            // 추적이 허용이 되면. 이 부분에서 IDFA 값을 확인 가능합니다.
->            // NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
->      }];
->    }
-> }
-> ```
-> *  firebase - 앱 추적 투명성(App Tracking Transparency) 승인 요청 가이드 :
->   https://developers.google.com/admob/ios/ios14?hl=ko#request
+#### iOS SDK 설치하기
+1. 프로젝트 폴더 내에 Sphere SDK framework 파일(.framework)을 복사합니다.
+2. 해당 프로젝트 내에 framework 파일을 추가합니다. (Add Files to ...)
+3. '프로젝트 설정 > General > Linked Frameworks and Libraries' 에서 'SphereSDK.framework'가 추가되었는지 확인 후
+만약 추가되지 않은 경우 'Linked Frameworks and Libraries > 추가(+) > Add Other...'를 통해 'SphereSDK.framework'를 추가합니다.
+![linked_frameworks](screenshot/screenshot_linkedframeworks.png)
+4. '프로젝트 설정 > General > BuildSettings > Linking > Other Linker Flags' 설정에 '-ObjC'를 추가합니다.  
+![buildsettings](screenshot/screenshot_buildsettings.png)
+#### Dependency framework 설치하기
+1. '프로젝트 설정 > General > Linked Frameworks and Libraries, and Embedded Content'에서 표의 framework목록 중 미설치된 항목을 추가합니다.
+
+|제목| 내용             |
+|------|----------------|
+|AdSupport.framework| IDFA 를 수집      |
+|CoreTelephony.framework| 통신사 정보를 수집     |
+|AppTrackingTransparency.framework| 추적 허용 상태정보를 수집 |
+
+#### 앱 추적 투명성 허가(App Tracking Transparency) 받기
+>* ‘iOS 14.5, iPadOS 14.5 및 tvOS 14.5 이후 버전에서는 타사 소유의 앱과 웹 사이트 전반에서 사용자를 추적하려면 앱에서 사용자에게 허가를 받아야 합니다. Sphere Analytics에서는 IDFA를 분석, 검증(테스트), 액션에 활용합니다.’
+1.  IDFA에 액세스하기 위한 앱 추적 투명성 승인 요청을 표시하려면 Info.plist를 업데이트하여 사용을 설명하는 맞춤 메시지와 함께 NSUserTrackingUsageDescription 키를 추가합니다
+```
+[텍스트는 예시이며, 변경하여 사용을 권장합니다]
+<key>NSUserTrackingUsageDescription</key>
+<string>App would like to access IDFA for tracking purpose.[텍스트는 예시이며, 변경하여 사용을 권장]</string>
+```
+![buildsettings](screenshot/screenshot_privacy_description.png)
+
+2. 사용자 추적허용 팝업표기
+* 아래의 코드는 예시이며, ATTrackingManager.requestTrackingAuthorization 코드의 실행을 위함입니다.
+* 권한 허용 팝업을 띄우고자 하는 시점에 호출합니다. 
+
+
+`<Swift>`
+```swift
+import AppTrackingTransparency
+import AdSupport
+...
+func getTrackingAllowPopup() {
+    if #available(iOS 14, *) {
+        ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+            // 추적이 허용이 되면. 이 부분에서 IDFA 값을 확인 가능합니다.
+            // let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        })
+    }
+}
+```
+`<Objective-C>`
+```objectivec
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
+#import <AdSupport/AdSupport.h>
+...
+- (void)getTrackingAllowPopup {
+    if (@available(iOS 14, *)) {
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            // 추적이 허용이 되면. 이 부분에서 IDFA 값을 확인 가능합니다.
+            // NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+      }];
+    }
+}
+
+```
+*  firebase - 앱 추적 투명성(App Tracking Transparency) 승인 요청 가이드 :
+   https://developers.google.com/admob/ios/ios14?hl=ko#request
 
 ### SDK 초기화하기
 
@@ -194,21 +194,21 @@ SDK가 초기화 되었다면 `logEvent` 함수를 이용하여 이벤트를 연
 이벤트명은 필수이며 파라미터는 없는 경우 `nil`로 설정 가능합니다. 이벤트명과 파라미터에 관한 규칙은 다음과 같습니다.
 
 1. 이벤트명
-    * 최대 40자
-    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용
+    * 최대 40자  
+    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용  
     * 첫 글자는 영문 대소문자만 허용
 
 2. 파라미터명
-    * 최대 40자
-    * 영문 대소문자, 숫자, 특수 문자 중 ‘_’ 만 허용
+    * 최대 40자  
+    * 영문 대소문자, 숫자, 특수 문자 중 ‘_’ 만 허용  
     * 첫 글자는 영문 대소문자만 허용
 
 3. 파라미터값
-    * 지원 타입 : NSString(최대 100자), long, double,
+    * 지원 타입 : NSString(최대 100자), long, double, 
     * SDK v1.2.10 이상 : NSMutableArray(String) 추가지원
 
 
-
+    
 
 `<Objective-C>`
 
@@ -266,7 +266,7 @@ SphereAnalytics.logEvent("event_name_2", paramBuilder: nil)
 사용자 아이디는 고객이 고객사의 서비스에 로그인할 때 사용되는 아이디가 아니라, 고객사의 시스템에서 사용자를 관리하는 고유한 식별값을 의미합니다.
 고유한 사용자를 구분하기 위한 사용자 아이디로서 설정 여부에 따라 로그인 여부를 판단합니다.  
 해당 정보는 유저를 구분하기 위한 용도로만 사용되므로 사용자를 식별하는 고유한 (Unique) 어떠한 식별 아이디도 사용 가능합니다.  
-사용자 아이디는 최대 256자까지 설정가능하고 `nil`로 설정 시 사용자 아이디 정보는 초기화되고 로그아웃 상태로 설정됩니다.
+사용자 아이디는 최대 256자까지 설정가능하고 `nil`로 설정 시 사용자 아이디 정보는 초기화되고 로그아웃 상태로 설정됩니다.  
 
 `<Objective-C>`
 
