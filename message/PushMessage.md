@@ -1,14 +1,14 @@
 # iOS Sphere Push Message 연동
 
-* [SDK 기본 연동](#SDK-기본-연동)
-  * [Notification Service Extension](#Notification-Service-Extension)
-  * [FCM 등록 토큰 설정](#FCM-등록-토큰-설정)
-  * [푸시 알림 리스너 등록](#푸시-알림-리스너-등록)
-  * [APNs 디바이스 토큰 설정](#apns-디바이스-토큰-설정)
-  * [사용자 푸시 동의 설정](#사용자-푸시-동의-설정)
-* [푸시메시지 데이터 전달](#푸시메시지-데이터-전달)
-
-## SDK 기본 연동
+* [SDK 연동](#SDK-연동)
+* [FCM 등록 토큰 설정](#FCM-등록-토큰-설정)
+  * [앱 실행중 메시지 수신 설정 & 클릭 통계 데이터 설정](#앱-실행중-메시지-수신-설정-&-클릭-통계-데이터-설정)
+  * [사용자 푸시 동의 연동](#사용자-푸시-동의-연동)
+* [심화 연동](#심화-연동)
+  * [iOS 메시지에 이미지 수신 설정](#ios-메시지에-이미지-수신-설정)
+  * [메시지 커스텀 오픈 연동](#메시지-커스텀-오픈-연동)
+  
+## SDK 연동
 
 > 푸시 메시지 기능을 사용하기 위해서는 Sphere SDK 연동가이드의 기본 연동 및 FCM(Firebase Cloud Messaging) 클라이언트 앱 설정이 필수적으로 완료되어야 메시지 수신이 가능합니다.
 
@@ -19,17 +19,6 @@ SDK 기본 연동 및 푸시 메시지 연동이 모두 완료된 샘플 프로�
 샘플 프로젝트를 통해 단말에서 메시지 전송 테스트를 하기 위해서는 Firebase 콘솔에서 샘플앱 프로젝트를 생성 후 발급받은 `GoogleService-Info.plist` 파일로 교체해야 테스트가 가능합니다.
 
 * 샘플 소스: [https://github.com/tand-git/ios-sdk/tree/master/message/sample](https://github.com/tand-git/ios-sdk/tree/master/message/sample)
-
-### Notification Service Extension
-
-> 이미지를 포함한 푸시 메시지 수신 시 이미지를 알림창에 표시하기 위해서는 Xcode 프로젝트에 [Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension)을 추가해야 합니다.  
-> 앱에서 이미 FCM을 통해 전달된 푸시 메시지의 이미지를 표시하고 있거나 이미지를 포함한 푸시 메시지를 사용하지 않을 경우 추가 연동은 필요하지 않습니다.
-
-자세한 사항은 아래에 나와있는 Firebase의 클라우드 메시징 가이드 및 Apple 개발자 문서를 통해 확인이 가능하며 실제 구현된 샘플은 Sphere 푸시 메시지 샘플 프로젝트에서도 참고할 수 있습니다.
-
-* [(Firebase) Set up the notification service extension](https://firebase.google.com/docs/cloud-messaging/ios/send-image#set_up_the_notification_service_extension)
-* [(Apple Developer) Modifying Content in Newly Delivered Notifications](https://developer.apple.com/documentation/usernotifications/modifying_content_in_newly_delivered_notifications)
-* [Sphere 푸시 메시지 샘플 소스](sample)
 
 ### FCM 등록 토큰 설정
 
@@ -76,7 +65,7 @@ extension AppDelegate : MessagingDelegate {
 @end
 ```
 
-### 푸시 알림 리스너 등록
+### 앱 실행중 메시지 수신 설정 & 클릭 통계 데이터 설정
 
 > 푸시 알림 리스너 등록 설정이 연동되지 않을 경우 Sphere 콘솔에서 "메시지 오픈"에 대한 통계 데이터가 부정확할 수 있습니다.
 
@@ -211,43 +200,9 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 @end
 ```
 
-### APNs 디바이스 토큰 설정
+### 사용자 푸시 동의 연동
 
-> 사용자의 언인스톨 정보를 집계하기 위해서는 APNs 디바이스 토큰 설정 연동이 필요합니다.
-
-앱이 실행되고 Remote Notifcaion이 등록된 후 호출되는 `didRegisterForRemoteNotificationsWithDeviceToken`를 재정의하여 `deviceToken`을 Sphere SDK에 설정합니다.
-
-`<Swift> - AppDelegate.swift`
-
-```swift
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-
-        // Sphere SDK APNs 디바이스 토큰 설정
-        SpherePushMessage.setAPNSDeviceToken(deviceToken)
-    }
-}
-```
-
-`<Objective-C> - AppDelegate.m`
-
-```objectivec
-@implementation AppDelegate
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-
-    // Sphere SDK APNs 디바이스 토큰 설정
-    [SPRPushMessage setAPNSDeviceToken:deviceToken];
-}
-
-@end
-```
-
-### 사용자 푸시 동의 설정
-
-> 사용자의 푸시 동의 설정에 따라 푸시 메시지 발송 허용 여부를 판단하기 위해서는 해당 정보를 SDK에 설정해야 합니다.
+> 사용자의 푸시 동의 연동은 푸시 메시지 발송 허용 여부를 판단하기 위함이며, 해당 정보를 SDK에 설정해야 합니다.
 
 > 로그인, 로그아웃 등 푸시동의정보 변경이 발생되는 위치에 SDK 설정이 필요합니다.
 
@@ -331,7 +286,22 @@ if (isLogIn) { // 로그인: ON 상태
 }
 ```
 
-## 푸시메시지 데이터 전달
+
+
+## 심화 연동
+
+### iOS 메시지에 이미지 수신 설정
+
+> 이미지를 포함한 푸시 메시지 수신 시 이미지를 알림창에 표시하기 위해서는 Xcode 프로젝트에 [Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension)을 추가해야 합니다.  
+> 앱에서 이미 FCM을 통해 전달된 푸시 메시지의 이미지를 표시하고 있거나 이미지를 포함한 푸시 메시지를 사용하지 않을 경우 추가 연동은 필요하지 않습니다.
+
+자세한 사항은 아래에 나와있는 Firebase의 클라우드 메시징 가이드 및 Apple 개발자 문서를 통해 확인이 가능하며 실제 구현된 샘플은 Sphere 푸시 메시지 샘플 프로젝트에서도 참고할 수 있습니다.
+
+* [(Firebase) Set up the notification service extension](https://firebase.google.com/docs/cloud-messaging/ios/send-image#set_up_the_notification_service_extension)
+* [(Apple Developer) Modifying Content in Newly Delivered Notifications](https://developer.apple.com/documentation/usernotifications/modifying_content_in_newly_delivered_notifications)
+* [Sphere 푸시 메시지 샘플 소스](sample)
+
+### 메시지 커스텀 오픈 연동
 
 > 푸시 메시지 전송 시 데이터(키/값)를 함께 전달하는 기능으로 Sphere 콘솔에서 푸시메시지 입력 시 키/값을 설정해야 합니다.
 * 키-값(key-value) 이용가이드: [링크](https://www.notion.so/Key-value-c65b4843b7cd4b6e80e91ad994af52b2)
