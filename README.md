@@ -1,27 +1,30 @@
 # Sphere iOS SDK
 
 * [기본 연동](#기본-연동)
-    * [Sphere Analytics 시작하기](#sphere-analytics-시작하기)
-    * [샘플 소스 및 연동 검증 가이드](#샘플-소스-및-연동-검증-가이드)
-    * [SDK 다운로드](#sdk-다운로드)
-    * [Xcode 프로젝트 설정](#xcode-프로젝트-설정)
-    * [SDK 초기화하기](#sdk-초기화하기)
+  * [Sphere Analytics 시작하기](#sphere-analytics-시작하기)
+  * [샘플 소스 및 연동 검증 가이드](#샘플-소스-및-연동-검증-가이드)
+  * [SDK 다운로드](#sdk-다운로드)
+  * [Xcode 프로젝트 설정](#xcode-프로젝트-설정)
+  * [SDK 초기화하기](#sdk-초기화하기)
 * [웹뷰 연동](#웹뷰-연동)
-    * [웹뷰 자바스크립트 메세지 핸들러 등록](#웹뷰-자바스크립트-메세지-핸들러-등록)
-    * [웹뷰 WebSDK 이용하기](#웹뷰-WebSDK-이용하기)
+  * [웹뷰 자바스크립트 메세지 핸들러 등록](#웹뷰-자바스크립트-메세지-핸들러-등록)
+  * [웹뷰 WebSDK 이용하기](#웹뷰-WebSDK-이용하기)
 * [이벤트 연동하기](#이벤트-연동하기)
+  * [이벤트 API 연동](#이벤트-api-연동)
 * [사용자 속성 연동하기](#사용자-속성-연동하기)
-    * [사용자 아이디 설정](#사용자-아이디-설정)
-    * [사용자 속성 설정](#사용자-속성-설정)
-    * [커스텀 사용자 속성 설정](#커스텀-사용자-속성-설정)
-    * [커스텀 사용자 포인트 설정](#커스텀-사용자-포인트-설정)
+  * [사용자 아이디 설정](#사용자-아이디-설정)
+  * [사용자 속성 설정](#사용자-속성-설정)
+  * [사용자 포인트 설정](#사용자-포인트-설정)
+  * [커스텀 사용자 속성 설정](#커스텀-사용자-속성-설정)
+  * [사용자 속성 API 연동](#사용자-속성-api-연동)
+  
 * [추가 설정](#추가-설정)
-    * [로그 출력](#로그-출력)
-    * [이벤트 즉시 전송](#이벤트-즉시-전송)
-    * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
-    * [Sphere ID 확인](#Sphere-ID-확인)
-* [PushMessage 연동](#pushmessage-연동)
-* [인앱메세지 설정](#인앱메세지-설정)
+  * [로그 출력](#로그-출력)
+  * [이벤트 즉시 전송](#이벤트-즉시-전송)
+  * [이벤트 수집 비활성화](#이벤트-수집-비활성화)
+  * [Sphere ID 확인](#sphere-id-확인)
+  * [PushMessage 연동](#pushmessage-연동)
+  * [인앱메세지 설정](#인앱메세지-설정)
 
 ## 기본 연동
 
@@ -207,8 +210,6 @@ SDK가 초기화 되었다면 `logEvent` 함수를 이용하여 이벤트를 연
     * SDK v1.2.10 이상 : NSMutableArray(String) 추가지원
 
 
-
-
 `<Objective-C>`
 
 ```objectivec
@@ -250,6 +251,15 @@ SphereAnalytics.logEvent("event_name_1", paramBuilder: paramBuilder)
 // 파라미터가 없는 이벤트 기록
 SphereAnalytics.logEvent("event_name_2", paramBuilder: nil)
 ```
+
+### 이벤트 API 연동
+> 서버에서만 인지하는 Interaction 예를 들어, 무통장 입금 완료/ 상품 배송 시작/ 장바구니 강제 초기화 등은 API 연동으로 지원한다.
+>
+> >해당 문의는 담당자/dev@tand.kr로 연락 주시면 API 규격서 안내 드립니다.
+
+> API로 수집된 이벤트는 서버에서 발생시킨 데이터이기 때문에 사용자의 기기 Id를 수집할 수 없고 콘솔에서 기기 Id로  조회할 수 없다.
+
+
 
 ## 사용자 속성 연동하기
 
@@ -313,32 +323,34 @@ if (isLogIn) { // 로그인: ON 상태
 if (isLogIn) { // 로그인: ON 상태 및 사용자 속성 변경 시 설정
 
     // 사용자 아이디 설정
-    [SPRAnalytics setUserId:@"[USER ID]"];
+    [SPRAnalytics setUserId:@"USERID"];
 
-    // 보유 포인트 설정
-    [SPRAnalytics setRemainingPoint:1000];
+    // 이름 설정
+    [SPRAnalytics setName:@"이름"];
     // 등급 설정
     [SPRAnalytics setGrade:@"vip"];
     // 성별 설정
     [SPRAnalytics setGender:@"m"]; // 남성: "m", 여성: "f"
     // 출생년도 설정
     [SPRAnalytics setBirthYear:1995];
-
+    // 보유 포인트 설정
+    [SPRAnalytics setRemainingPoint:1000];
 
 } else { // 로그아웃: OFF 상태
 
     // 사용자 아이디 초기화
     [SPRAnalytics setUserId:nil];
 
-    // 보유 포인트 초기화
-    [SPRAnalytics removePoints];
+    // 사용자 이름 초기화
+    [SPRAnalytics setName:nil];
     // 등급 초기화
     [SPRAnalytics setGrade:nil];
     // 성별 초기화
     [SPRAnalytics setGender:nil];
     // 출생년도 초기화
     [SPRAnalytics setBirthYear:0];
-    
+    // 보유 포인트 초기화
+    [SPRAnalytics removePoints];    
 
 }
 ```
@@ -349,34 +361,61 @@ if (isLogIn) { // 로그인: ON 상태 및 사용자 속성 변경 시 설정
 if (isLogIn) { // 로그인: ON 상태 및 사용자 속성 변경 시 설정
 
     // 사용자 아이디 설정
-    SphereAnalytics.setUserId("[USER ID]")
+    SphereAnalytics.setUserId("USERID")
 
-    // 보유 포인트 설정
-    SphereAnalytics.setRemainingPoint(1000)
+    // 사용자 이름 설정
+    SphereAnalytics.setName("이름")
     // 등급 설정
     SphereAnalytics.setGrade("vip")
     // 성별 설정
     SphereAnalytics.setGender("m") // 남성: "m", 여성: "f"
-
     // 출생년도 설정
     SphereAnalytics.setBirthYear(1995) // 출생년도
-
+    // 보유 포인트 설정
+    SphereAnalytics.setRemainingPoint(1000)
+    
 } else { // 로그아웃: OFF 상태
 
     // 사용자 아이디 초기화
     SphereAnalytics.setUserId(nil)
 
-    // 보유 포인트 초기화
-    SphereAnalytics.removePoints()
+    // 사용자 이름 초기화
+    SphereAnalytics.setName(nil)
     // 등급 초기화
     SphereAnalytics.setGrade(nil)
     // 성별 초기화
     SphereAnalytics.setGender(nil)
     // 출생년도 초기화
     SphereAnalytics.setBirthYear(0)
-
+    // 보유 포인트 초기화
+    SphereAnalytics.removePoints()
 
 }
+```
+
+### 사용자 포인트 설정
+
+미리 정의되지 않은 사용자 속성 정보를 사용 시 `setRemainingPoint`(보유 포인트) 함수를 이용하여 커스텀 사용자 포인트를 설정할 수 있습니다.  
+사용자 속성은 속성명과 속성값의 쌍으로 구성되며 사용자 속성 정보 초기화 시 `removePoints` 함수를 이용하여 초기화가 가능합니다.
+또한 사용자의 전체 포인트를 초기화하는 경우 `resetPoints`함수를 이용하여 초기화 가능합니다.
+
+1. 사용자 속성값
+    * 최대 100자
+    * 지원 타입 : String
+
+2. 사용자 속성명
+    * 최대 40자
+    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용
+    * 첫 글자는 영문 대소문자만 허용
+    * setRemainingPoint(포인트) 함수사용 시 "point"로 사전 정의된 포인트명임으로 사용 불가
+
+```js
+// 커스텀 사용자 속성 설정
+SphereAnalytics.setRemainingPoint( 1234567, "user_point_name");
+// 커스텀 사용자 속성 초기화
+SphereAnalytics.removePoints("user_point_name");
+// 사용자 포인트 전체 초기화(기본포인트 + 커스텀포인트)
+SphereAnalytics.resetPoints();
 ```
 
 ### 커스텀 사용자 속성 설정
@@ -440,30 +479,9 @@ SphereAnalytics.setUserPropertyArray(arrProp, forName: "user_property_arr")
 SphereAnalytics.setUserPropertyArray(nil, forName: "user_property_arr")
 ```
 
-### 커스텀 사용자 포인트 설정
+### 사용자 속성 API 연동
+> 사용자 속성은 정확도를 높이기 위해서 API 연동을 지원하며, 해당 문의는 담당자/dev@tand.kr로 연락 주시면 API 규격서 안내 드립니다.
 
-미리 정의되지 않은 사용자 속성 정보를 사용 시 `setRemainingPoint`(보유 포인트) 함수를 이용하여 커스텀 사용자 포인트를 설정할 수 있습니다.  
-사용자 속성은 속성명과 속성값의 쌍으로 구성되며 사용자 속성 정보 초기화 시 `removePoints` 함수를 이용하여 초기화가 가능합니다.
-또한 사용자의 전체 포인트를 초기화하는 경우 `resetPoints`함수를 이용하여 초기화 가능합니다.
-
-1. 사용자 속성값
-    * 최대 100자
-    * 지원 타입 : String
-
-2. 사용자 속성명
-    * 최대 40자
-    * 영문 대소문자, 숫자, 특수문자 중 ‘_’ 만 허용
-    * 첫 글자는 영문 대소문자만 허용
-    * setRemainingPoint(포인트) 함수사용 시 "point"로 사전 정의된 포인트명임으로 사용 불가
-
-```js
-// 커스텀 사용자 속성 설정
-SphereAnalytics.setRemainingPoint( 1234567, "user_point_name");
-// 커스텀 사용자 속성 초기화
-SphereAnalytics.removePoints("user_point_name");
-// 사용자 포인트 전체 초기화(기본포인트 + 커스텀포인트)
-SphereAnalytics.resetPoints();
-```
 
 ## 추가 설정
 
