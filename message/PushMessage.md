@@ -304,7 +304,7 @@ if (isLogIn) { // 로그인: ON 상태
 ### 메시지 커스텀 오픈 연동
 
 > 푸시 메시지 전송 시 데이터(키/값)를 함께 전달하는 기능으로 Sphere 콘솔에서 푸시메시지 입력 시 키/값을 설정해야 합니다.
-* 키-값(key-value) 이용가이드: [링크](https://www.notion.so/Key-value-c65b4843b7cd4b6e80e91ad994af52b2)
+* 키-값(key-value) 이용가이드: [링크](https://lightning-individual-9c1.notion.site/Key-value-02c222b61a504ef2b49f3477ae95621a)
 
 데이터(키/값)와 함께 푸시메시지를 전송하면 메시지 클릭 시 실행되는 `AppDelegate`로 데이터가 전달됩니다.  
 만약 링크를 통해 앱 내 특정 페이지로 이동할 경우 링크에 해당하는 키/값이 `AppDelegate`로 전달되면 해당 링크를 확인하여 링크 페이지로 이동하는 코드를 구현해야 합니다.
