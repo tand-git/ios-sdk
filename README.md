@@ -43,14 +43,14 @@ Sphere Analytics 사용을 위해서는 기본적으로 앱키(App key)가 필�
 
 ### SDK 다운로드
 
-SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이지](https://github.com/tand-git/ios-sdk/releases)를 방문하면 현재까지 릴리즈된 SDK 버전들을 확인할 수 있으며 가장 최신 버전의 SDK 파일(SphereSDK.framework.zip)을 선택하여 다운로드 후 압축을 해제합니다.
+SDK 라이브러리를 다운로드하기 위해서는 [SDK 다운로드 페이지](https://github.com/tand-git/ios-sdk/releases)를 방문하면 현재까지 릴리즈된 SDK 버전들을 확인할 수 있으며 가장 최신 버전의 SDK 파일(SphereSDK.xcframework.zip)을 선택하여 다운로드 후 압축을 해제합니다.
 
 ### Xcode 프로젝트 설정
 #### iOS SDK 설치하기
 1. 프로젝트 폴더 내에 Sphere SDK framework 파일(.framework)을 복사합니다.
 2. 해당 프로젝트 내에 framework 파일을 추가합니다. (Add Files to ...)
-3. '프로젝트 설정 > General > Linked Frameworks and Libraries' 에서 'SphereSDK.framework'가 추가되었는지 확인 후
-   만약 추가되지 않은 경우 'Linked Frameworks and Libraries > 추가(+) > Add Other...'를 통해 'SphereSDK.framework'를 추가합니다.
+3. '프로젝트 설정 > General > Linked Frameworks and Libraries' 에서 'SphereSDK.xcframework'가 추가되었는지 확인 후
+   만약 추가되지 않은 경우 'Linked Frameworks and Libraries > 추가(+) > Add Other...'를 통해 'SphereSDK.xcframework'를 추가합니다.
    ![linked_frameworks](screenshot/screenshot_linkedframeworks.png)
 4. '프로젝트 설정 > General > BuildSettings > Linking > Other Linker Flags' 설정에 '-ObjC'를 추가합니다.  
    ![buildsettings](screenshot/screenshot_buildsettings.png)
